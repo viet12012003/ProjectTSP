@@ -1,0 +1,26 @@
+Mã đơn hàng, Người gửi, Người nhận, Địa chỉ nhận, Phường, Quận, Tên hàng hóa, Khối lượng, Dịch vụ
+0, Yến , Phương, Chính Kinh, Nhân Chính, Thanh Xuân, lipstick, 1kg, Hỏa tốc
+1, Phương, Yến, Nguyễn Trãi, Thanh Xuân Trung, Thanh Xuân, powder, 2kg, Thường
+2, Hải, Yến, Vũ Trọng Phụng, Thanh Xuân Bắc, Thanh Xuân, book, 4kg, Hỏa tốc
+3, Vương, Việt, Khương Hạ, Khương Trung, Thanh Xuân, clothes, 8kg, Thường
+4, Việt, Quân, Triều Khúc, Khương Đình, Thanh Xuân, candy, 6kg, Hỏa tốc
+5, Quân, Mai, Bưởi, Nhật Tân, Tây Hồ, pens, 7kg, Thường
+6, Phương, Việt, Phú Thượng, Quảng An, Tây Hồ, knowledge, 100kg, Hỏa tốc
+7, Việt, Phương, Xuân La, Yên Phụ, Tây Hồ, handle, 150kg, Thường
+8, Việt, Yến, Thụy Khê, Tứ Liên, Tây Hồ, exercise, 25kg, Hỏa tốc
+9, Yến, Việt, Yên Phụ, Bưởi, Tây Hồ, solution, 30kg, Thường
+10, Quân, Việt, Cát Linh, Láng Thượng, Đống Đa, quintal, 100kg, Hỏa tốc
+11, Việt, Quan, Thổ Quan, Thịnh Quang, Đống Đa, nothing, 1kg, Thường
+12, Việt, Quân, Quang Trung, Trung Liệt, Đống Đa, ticket, 3kg, Hỏa tốc
+13, Quốc, Quang, Tây Sơn, Ngã Tư Sở, Đống Đa, card, 6kg, Thường
+14, Anh, Trung, Ô Chợ Dừa, Hàng Bột, Đống Đa, invitation, 3kg, Hỏa tốc
+15, Trang, Thơm, Cống Vị, Điện Biên, Ba Đình, laptop, 2kg, Thường
+16, Phương, Nhi, Thành Công, Trúc Bạch, Ba Đình, money, 15kg, Hỏa tốc
+17, Hoàng, Phương, Liễu Giai, Kim Mã, Ba Đình, confidence, 30kg, Thường
+18, Huy, Hải, Ngọc Hà, Vĩnh Phúc, Ba Đình, jealous, 20kg, Hỏa tốc
+19, Thành, Uyên, Giảng Võ, Nguyễn Trung Trực, Ba Đình, ice cream, 47kg, Thường
+20, Quân, Ngọc, Nghĩa Đô, Mai Dịch, Cầu Giấy, goods, 11kg, Hỏa tốc
+21, Thảo, Hiền, Dịch Vọng A, Dịch Vọng, Cầu Giấy, gentle, 133kg, Thường
+22, Thủy, Hồng, Yên Hòa, Trung Hòa, Cầu Giấy, tsunami, 400kg, Hỏa tốc
+23, Minh, Thanh, Dịch Vọng B, Dịch Vọng Hậu, Cầu Giấy, proof, 50kg, Thường
+24, Dương, An, Mai Dịch, Quan Hoa, Cầu Giấy, stress, 90kg, Hỏa tốc
