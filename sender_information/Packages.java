@@ -1,3 +1,5 @@
+package sender_information;
+
 import java.io.Serializable;
 
 public class Packages implements Serializable {
