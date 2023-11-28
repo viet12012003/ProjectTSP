@@ -76,4 +76,17 @@ public class Packages implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Packages{" +
+                "id=" + id +
+                ", sender='" + sender + '\'' +
+                ", receiver='" + receiver + '\'' +
+                ", address='" + address + '\'' +
+                ", goods='" + goods + '\'' +
+                ", weight=" + weight +
+                ", service='" + service + '\'' +
+                '}';
+    }
 }

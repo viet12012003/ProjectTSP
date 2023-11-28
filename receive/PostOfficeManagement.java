@@ -17,7 +17,7 @@ import java.util.PriorityQueue;
 public class PostOfficeManagement {
     private PriorityQueue<Packages> packageQueue;
     private JFrame frame;
-
+    private String fileName = "D:\\Workspace\\code\\src\\ProjectTSP\\data.csv";
     public PostOfficeManagement() {
         // packageQueue ưu tiên Hỏa Tốc trước Thường, nếu cùng loại thì ưu tiên theo ID
         this.packageQueue = new PriorityQueue<>(Comparator
@@ -33,7 +33,7 @@ public class PostOfficeManagement {
         frame.setLayout(null);
         frame.setLayout(new BorderLayout());
 
-        String fileName = "F:/Project DSA/ProjectTSP/data.csv"; // data.inputData();
+         // data.inputData();
         // Đọc dữ liệu từ file và thêm vào PriorityQueue
         readPackagesFromFile(fileName);
         // Hiển thị thông tin đã tiếp nhận
@@ -73,12 +73,13 @@ public class PostOfficeManagement {
             model.addRow(new Object[]{pack.getId(), pack.getSender(), pack.getReceiver(), pack.getAddress(), pack.getGoods(), pack.getWeight(), pack.getService()});
         }
 
+
         // Vẽ lại frame
         frame.revalidate();
         frame.repaint();
     }
 
-    public PriorityQueue<Packages> readPackagesFromFile(String fileName) {
+    public void readPackagesFromFile(String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -100,6 +101,10 @@ public class PostOfficeManagement {
             e.printStackTrace();
         }
 
+    }
+
+    public PriorityQueue<Packages> getPackageQueue() {
+        readPackagesFromFile(fileName);
         return packageQueue;
     }
 

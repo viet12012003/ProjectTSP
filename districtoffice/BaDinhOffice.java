@@ -32,8 +32,6 @@ public class BaDinhOffice implements Office{
     }
 
     public static void main(String[] args) {
-        Office baDinhOffice = new BaDinhOffice();
-        OfficeGUI baDinhGUI = new OfficeGUI(baDinhOffice);
-        baDinhGUI.show();
+
     }
 }
