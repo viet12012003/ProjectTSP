@@ -9,7 +9,9 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.PriorityQueue;
 
 public class PostOfficeManagement {
@@ -29,6 +31,7 @@ public class PostOfficeManagement {
         frame.setBackground(Color.WHITE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
+        frame.setLayout(new BorderLayout());
 
          // data.inputData();
         // Đọc dữ liệu từ file và thêm vào PriorityQueue
