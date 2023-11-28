@@ -62,8 +62,7 @@ public class PostOfficeManagement {
         table.setDefaultRenderer(Object.class, centerRenderer);
 
         // Lấy dữ liệu từ PriorityQueue và hiển thị trên bảng
-        while (!packageQueue.isEmpty()) {
-            Packages pack = packageQueue.poll();
+        for (Packages pack : packageQueue) {
             model.addRow(new Object[]{pack.getId(), pack.getSender(), pack.getReceiver(), pack.getAddress(), pack.getGoods(), pack.getWeight(), pack.getService()});
         }
 
