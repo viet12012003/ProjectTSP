@@ -16,4 +16,21 @@ public class ThanhXuanOffice implements Office {
         return thanhXuanQueue.poll();
     }
 
+    @Override
+    public void printPackages() {
+        for(Packages packages : thanhXuanQueue){
+            System.out.println(packages.toString());
+        }
+    }
+
+    @Override
+    public Queue<Packages> getPackageQueue() {
+        return thanhXuanQueue;
+    }
+
+    public static void main(String[] args) {
+        Office thanhXuanOffice = new ThanhXuanOffice();
+        OfficeGUI thanhXuanGUI = new OfficeGUI(thanhXuanOffice);
+        thanhXuanGUI.show();
+    }
 }
