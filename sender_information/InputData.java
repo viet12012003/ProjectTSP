@@ -1,3 +1,5 @@
+package sender_information;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
