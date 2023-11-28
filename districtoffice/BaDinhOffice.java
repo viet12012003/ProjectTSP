@@ -12,8 +12,28 @@ public class BaDinhOffice implements Office{
         baDinhQueue.add(packages);
     }
 
+
     @Override
     public Packages takePackageToDeliver() {
         return baDinhQueue.poll();
+    }
+
+    @Override
+    public void printPackages() {
+        for (Packages packages :
+                baDinhQueue) {
+            System.out.println(packages.toString());
+        }
+    }
+
+    @Override
+    public Queue<Packages> getPackageQueue() {
+        return baDinhQueue;
+    }
+
+    public static void main(String[] args) {
+        Office baDinhOffice = new BaDinhOffice();
+        OfficeGUI baDinhGUI = new OfficeGUI(baDinhOffice);
+        baDinhGUI.show();
     }
 }

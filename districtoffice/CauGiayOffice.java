@@ -17,4 +17,21 @@ public class CauGiayOffice implements Office{
         return cauGiayQueue.poll();
     }
 
+    @Override
+    public void printPackages() {
+        for (Packages packages:
+             cauGiayQueue) {
+            System.out.println(packages.toString());
+        }
+    }
+
+    @Override
+    public Queue<Packages> getPackageQueue() {
+        return cauGiayQueue;
+    }
+    public static void main(String[] args) {
+        Office cauGiayOffice = new CauGiayOffice();
+        OfficeGUI cauGiayGUI = new OfficeGUI(cauGiayOffice);
+        cauGiayGUI.show();
+    }
 }
