@@ -9,7 +9,9 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.PriorityQueue;
 
 public class PostOfficeManagement {
@@ -29,6 +31,7 @@ public class PostOfficeManagement {
         frame.setBackground(Color.WHITE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
+        frame.setLayout(new BorderLayout());
 
         String fileName = "F:/Project DSA/ProjectTSP/data.csv"; // data.inputData();
         // Đọc dữ liệu từ file và thêm vào PriorityQueue
@@ -61,8 +64,12 @@ public class PostOfficeManagement {
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         table.setDefaultRenderer(Object.class, centerRenderer);
 
+        // Tạo một bản sao của PriorityQueue để duyệt qua
+        PriorityQueue<Packages> tempQueue = new PriorityQueue<>(packageQueue);
+
         // Lấy dữ liệu từ PriorityQueue và hiển thị trên bảng
-        for (Packages pack : packageQueue) {
+        while (!tempQueue.isEmpty()) {
+            Packages pack = tempQueue.poll();
             model.addRow(new Object[]{pack.getId(), pack.getSender(), pack.getReceiver(), pack.getAddress(), pack.getGoods(), pack.getWeight(), pack.getService()});
         }
 
