@@ -9,17 +9,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 public class InputData {
     public static void main(String[] args) {
         String filename = inputData();
-
     }
 
     public static String inputData() {
         //Tao giao dien
         JFrame frame = new JFrame("THÔNG TIN GỬI HÀNG - BƯU CỤC HÀ NỘI");
-        frame.setSize(1000, 800);
+        frame.setSize(1100, 800);
         frame.setBackground(Color.WHITE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
@@ -71,12 +71,12 @@ public class InputData {
 
         //Chọn Quận
         JLabel districtLabel = new JLabel("Quận:");
-        districtLabel.setBounds(250, 300, 100, 30);
+        districtLabel.setBounds(250, 300, 150, 30);
         frame.add(districtLabel);
 
         String[] district = {"Ba Đình", "Cầu Giấy", "Đống Đa", "Thanh Xuân", "Tây Hồ"};
         JComboBox<String> districtCombox = new JComboBox<>(district);
-        districtCombox.setBounds(350, 300, 150, 30);
+        districtCombox.setBounds(350, 300, 200, 30);
         frame.add(districtCombox);
 
         //Chọn Phường
@@ -85,51 +85,35 @@ public class InputData {
         frame.add(wardsLabel);
 
         JComboBox<String> wardCombox = new JComboBox<>();
-        wardCombox.setBounds(350, 350, 150, 30);
+        wardCombox.setBounds(350, 350, 200, 30);
         frame.add(wardCombox);
 
-        wardCombox.addActionListener(new ActionListener() {
+        // Tạo bản sao của danh sách phường theo từng quận
+        HashMap<String, String[]> wardMap = new HashMap<>();
+        wardMap.put("Ba Đình", new String[]{"Cống Vị", "Điện Biên", "Đội Cấn", "Giảng Võ", "Kim Mã", "Liễu Giai", "Ngọc Hà",
+                "Ngọc Khánh", "Nguyễn Trung Trực", "Phúc Xá", "Quán Thánh", "Thành Công", "Trúc Bạch", "Vĩnh Phúc"});
+        // Thêm phường cho các quận khác tương tự
+        wardMap.put("Cầu Giấy",new String[]{"Nghĩa Đô", "Nghĩa Tân", "Mai Dịch", "Dịch Vọng", "Dịch Vọng Hậu", "Quan Hoa", "Yên Hoà", "Trung Hoà"});
+        wardMap.put("Đống Đa",new String[]{"Cát Linh", "Văn Miếu", "Quốc Tử Giám", "Láng Thượng", "Láng Hạ", "Ô Chợ Dừa", "Văn Chương",
+                "Hàng Bột", "Khâm Thiên", "Thổ Quan", "Nam Đồng", "Trung Phụng", "Quang Trung", "Trung Liệt",
+                "Phương Liên", "Thịnh Quang", "Trung Tự", "Kim Liên", "Phương Mai", "Ngã Tư Sở", "Khương Thượng"});
+        wardMap.put("Thanh Xuân",new String[]{"Thượng Đình", "Hạ Đình", "Thanh Xuân Bắc", "Thanh Xuân Trung", "Thanh Xuân Nam", "Nhân Chính", "Khương Trung",
+                "Khương Mai", "Khương Đình", "Kim Giang", "Phương Liệt"});
+        wardMap.put("Tây Hồ",new String[]{"Bưởi", "Nhật Tân", "Phú Thượng", "Quảng An", "Thuỵ Khê", "Tứ Liên", "Xuân La", "Yên Phụ"});
+        // Sự kiện khi chọn quận
+        districtCombox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedDistrict = districtCombox.getSelectedItem().toString();
-                if (selectedDistrict.equals("Ba Đình")) {
+                String[] wards = wardMap.get(selectedDistrict); // Lấy danh sách phường tương ứng với quận được chọn
+                if (wards != null) {
                     wardCombox.removeAllItems();
-                    String[] wardBaDinh = {"Cống Vị", "Điện Biên", "Đội Cấn", "Giảng Võ", "Kim Mã", "Liễu Giai", "Ngọc Hà",
-                            "Ngọc Khánh", "Nguyễn Trung Trực", "Phúc Xá", "Quán Thánh", "Thành Công", "Trúc Bạch", "Vĩnh Phúc"};
-                    for (String ward : wardBaDinh) {
-                        wardCombox.addItem(ward);
-                    }
-                } else if (selectedDistrict.equals("Cầu Giấy")) {
-                    wardCombox.removeAllItems();
-                    String[] wardCauGiay = {"Nghĩa Đô", "Nghĩa Tân", "Mai Dịch", "Dịch Vọng", "Dịch Vọng Hậu", "Quan Hoa", "Yên Hoà", "Trung Hoà"};
-                    for (String ward : wardCauGiay) {
-                        wardCombox.addItem(ward);
-                    }
-                } else if (selectedDistrict.equals("Đống Đa")) {
-                    wardCombox.removeAllItems();
-                    String[] wardDongDa = {"Cát Linh", "Văn Miếu", "Quốc Tử Giám", "Láng Thượng", "Láng Hạ", "Ô Chợ Dừa", "Văn Chương",
-                            "Hàng Bột", "Khâm Thiên", "Thổ Quan", "Nam Đồng", "Trung Phụng", "Quang Trung", "Trung Liệt",
-                            "Phương Liên", "Thịnh Quang", "Trung Tự", "Kim Liên", "Phương Mai", "Ngã Tư Sở", "Khương Thượng"};
-                    for (String ward : wardDongDa) {
-                        wardCombox.addItem(ward);
-                    }
-                } else if (selectedDistrict.equals("Thanh Xuân")) {
-                    wardCombox.removeAllItems();
-                    String[] wardThanhXuan = {"Thượng Đình", "Hạ Đình", "Thanh Xuân Bắc", "Thanh Xuân Trung", "Thanh Xuân Nam", "Nhân Chính", "Khương Trung",
-                            "Khương Mai", "Khương Đình", "Kim Giang", "Phương Liệt"};
-                    for (String ward : wardThanhXuan) {
-                        wardCombox.addItem(ward);
-                    }
-                } else if (selectedDistrict.equals("Tây Hồ")) {
-                    wardCombox.removeAllItems();
-                    String[] wardTayHo = {"Bưởi", "Nhật Tân", "Phú Thượng", "Quảng An", "Thuỵ Khê", "Tứ Liên", "Xuân La", "Yên Phụ"};
-                    for (String ward : wardTayHo) {
-                        wardCombox.addItem(ward);
+                    for (String ward : wards) {
+                        wardCombox.addItem(ward); // Thêm các phường vào combobox phường
                     }
                 }
             }
         });
-
 
         JLabel serviceLabel = new JLabel("Dịch vụ:");
         serviceLabel.setBounds(250, 400, 100, 30);
@@ -137,15 +121,15 @@ public class InputData {
 
         String[] services = {"Hỏa tốc", "Giao hàng thường"};
         JComboBox<String> serviceComboBox = new JComboBox<>(services);
-        serviceComboBox.setBounds(350, 400, 150, 30);
+        serviceComboBox.setBounds(350, 400, 200, 30);
         frame.add(serviceComboBox);
 
         JButton submitButton = new JButton("Xác nhận");
-        submitButton.setBounds(380, 450, 100, 30);
+        submitButton.setBounds(390, 450, 100, 30);
         frame.add(submitButton);
 
         // Thêm bảng để hiển thị thông tin
-        String[] columns = {"Mã đơn hàng", "Người gửi", "Người nhận", "Địa chỉ người nhận", "Tên hàng hóa", "Khối lượng", "Địa chỉ", "Dịch vụ"};
+        String[] columns = {"Mã đơn hàng", "Người gửi", "Người nhận", "Địa chỉ người nhận", "Phường", "Quận", "Tên hàng hoá","Khối lượng", "Dịch vụ"};
         DefaultTableModel model = new DefaultTableModel(columns, 0);
         JTable table = new JTable(model);
 
@@ -168,17 +152,17 @@ public class InputData {
         try {
             FileWriter writer = new FileWriter(fileName, true);
             //  đặt tên cho các cột
-            String header = "Người gửi,Người nhận,Địa chỉ nhận,Tên hàng hóa,Khối lượng,Địa chỉ,Dịch vụ";
+            String header = "Người gửi, Người nhận, Địa chỉ cụ thể, Phường, Quận, Tên hàng hoá, Khối lượng,Dịch vụ";
             writer.write(header);
             writer.write(System.lineSeparator());
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 
-        int id = 0;    // Bắt đầu đơn hàng từ 0
+        final int[] id = {1};    // Bắt đầu đơn hàng từ 1
 
         submitButton.addActionListener(e -> {
-            String idGoods = Integer.toString(id);
+            String idGoods = Integer.toString(id[0]);
             String sender = senderField.getText();
             String receiver = receiverField.getText();
             String receiverAddress = receiverAddressField.getText();
@@ -215,7 +199,9 @@ public class InputData {
                 ex.printStackTrace();
             }
 
+            id[0]++;
         });
+
         frame.setVisible(true);
 
         return fileName;
