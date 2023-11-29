@@ -1,6 +1,7 @@
 package transitoffice;
 
 import districtoffice.*;
+import receive.PackageQueueManager;
 import sender_information.Packages;
 
 import java.util.HashMap;
@@ -12,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TransitOffice {
+    private PackageQueueManager packageQueueManager = new PackageQueueManager();
+    private PriorityQueue<Packages> packages = packageQueueManager.getPackageQueue();
     private JFrame frame;
     private JButton classifyButton;
 
@@ -33,23 +36,22 @@ public class TransitOffice {
     private void initialize() {
         frame = new JFrame();
         frame.setTitle("Transit Office");
-        frame.setBounds(100, 100, 1000, 1000);
+        frame.setBounds(100, 100, 400, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-        classifyButton = new JButton("Phân loại hàng hóa ra thành các bưu cục từng quận");
+        classifyButton = new JButton("Phân loại và In hàng hóa");
         frame.getContentPane().add(classifyButton);
 
         classifyButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Gọi hàm phân loại và in thông tin
-//                classifyAndPrintPackages();
+                classifyAndPrintPackages(packages);
             }
         });
-
     }
 
-    public static void classifyAndPrintPackages(PriorityQueue<Packages> packages) {
+    private void classifyAndPrintPackages(PriorityQueue<Packages> packages) {
         Map<String, Office> districtOfficeMap = new HashMap<>();
         districtOfficeMap.put("Thanh Xuân", new ThanhXuanOffice());
         districtOfficeMap.put("Đống Đa", new DongDaOffice());
@@ -58,8 +60,8 @@ public class TransitOffice {
         districtOfficeMap.put("Cầu Giấy", new CauGiayOffice());
 
         // Phân loại gói hàng theo từng quận
-        for (Packages p : packages) {
-            classifyPackageByDistrict(p, districtOfficeMap);
+        while (!packages.isEmpty()) {
+            classifyPackageByDistrict(packages.poll(), districtOfficeMap);
         }
 
         // In thông tin theo từng quận
@@ -69,8 +71,9 @@ public class TransitOffice {
         }
     }
 
-    public static void classifyPackageByDistrict(Packages packages, Map<String, Office> districtOfficeMap) {
-        String district = packages.getAddress();
+    private void classifyPackageByDistrict(Packages packages, Map<String, Office> districtOfficeMap) {
+        String[] districtArray = packages.getAddress().split(",");
+        String district = districtArray[districtArray.length - 1].trim();
         if (districtOfficeMap.containsKey(district)) {
             Office office = districtOfficeMap.get(district);
             office.deliverToOffice(packages);

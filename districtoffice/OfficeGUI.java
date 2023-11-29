@@ -14,6 +14,7 @@ public class OfficeGUI {
 
     public OfficeGUI(Office office) {
         this.office = office;
+        office.printPackages();
         initialize();
     }
 
