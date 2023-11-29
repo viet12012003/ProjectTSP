@@ -1,7 +1,7 @@
 package transitoffice;
 
 import districtoffice.*;
-import receive.PostOfficeManagement;
+import receive.PackageQueueManager;
 import sender_information.Packages;
 
 import java.util.HashMap;
@@ -13,8 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TransitOffice {
-    private PostOfficeManagement postOfficeManagement = new PostOfficeManagement();
-    private PriorityQueue<Packages> packages = postOfficeManagement.getPackageQueue();
+    private PackageQueueManager packageQueueManager = new PackageQueueManager();
+    private PriorityQueue<Packages> packages = packageQueueManager.getPackageQueue();
     private JFrame frame;
     private JButton classifyButton;
 
@@ -61,8 +61,6 @@ public class TransitOffice {
 
         // Phân loại gói hàng theo từng quận
         while (!packages.isEmpty()) {
-            String[] districtArray = packages.peek().getAddress().split(",");
-            String district = districtArray[districtArray.length - 1].trim();
             classifyPackageByDistrict(packages.poll(), districtOfficeMap);
         }
 
