@@ -13,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TransitOffice {
+    private PostOfficeManagement postOfficeManagement = new PostOfficeManagement();
+    private PriorityQueue<Packages> packages = postOfficeManagement.getPackageQueue();
     private JFrame frame;
     private JButton classifyButton;
 
@@ -44,8 +46,6 @@ public class TransitOffice {
         classifyButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Gọi hàm phân loại và in thông tin
-                PostOfficeManagement postOfficeManagement = new PostOfficeManagement();
-                PriorityQueue<Packages> packages = postOfficeManagement.getPackageQueue();
                 classifyAndPrintPackages(packages);
             }
         });
@@ -60,10 +60,10 @@ public class TransitOffice {
         districtOfficeMap.put("Cầu Giấy", new CauGiayOffice());
 
         // Phân loại gói hàng theo từng quận
-        for (Packages p : packages) {
-            String[] districtArray = p.getAddress().split(",");
+        while (!packages.isEmpty()) {
+            String[] districtArray = packages.peek().getAddress().split(",");
             String district = districtArray[districtArray.length - 1].trim();
-            classifyPackageByDistrict(p, districtOfficeMap);
+            classifyPackageByDistrict(packages.poll(), districtOfficeMap);
         }
 
         // In thông tin theo từng quận
