@@ -1,12 +1,17 @@
 package districtoffice;
 
 import sender_information.Packages;
-
-import java.util.LinkedList;
 import java.util.Queue;
 
 public class CauGiayOffice implements Office{
-    private Queue<Packages> cauGiayQueue = new LinkedList<>();
+    private Queue<Packages> cauGiayQueue ;
+    private String fileName = "D:\\Workspace\\code\\src\\ProjectTSP\\Cầu Giấy_packages.csv";
+
+    public CauGiayOffice() {
+        DataReader dataReader = new DataReader(fileName);
+        this.cauGiayQueue = dataReader.readDataFromFile();
+    }
+
     @Override
     public void deliverToOffice(Packages packages) {
         cauGiayQueue.add(packages);
@@ -20,7 +25,7 @@ public class CauGiayOffice implements Office{
     @Override
     public void printPackages() {
         for (Packages packages:
-             cauGiayQueue) {
+                cauGiayQueue) {
             System.out.println(packages.toString());
         }
     }
@@ -34,4 +39,5 @@ public class CauGiayOffice implements Office{
         OfficeGUI cauGiayGUI = new OfficeGUI(cauGiayOffice);
         cauGiayGUI.show();
     }
+
 }

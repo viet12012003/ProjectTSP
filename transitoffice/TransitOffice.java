@@ -87,16 +87,15 @@ public class TransitOffice {
     }
     public static void writePackagesToCSV(String district, Office office, String fileName) {
         try (FileWriter writer = new FileWriter(fileName)) {
-            writer.append("District: ").append(district).append("\n");
-            writer.append("ID,Người gửi,Người nhận,Đường,Phường,Quận,Trọng lượng\n");
-
             for (Packages packages : office.getPackageQueue()) {
                 writer.append(String.join(",",
                                 String.valueOf(packages.getId()),
                                 packages.getSender(),
                                 packages.getReceiver(),
                                 packages.getAddress(),
-                                String.valueOf(packages.getWeight())))
+                                packages.getGoods(),
+                                String.valueOf(packages.getWeight()),
+                                packages.getService()))
                         .append("\n");
             }
 

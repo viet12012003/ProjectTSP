@@ -6,7 +6,14 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class ThanhXuanOffice implements Office {
-    private Queue<Packages> thanhXuanQueue = new LinkedList<>();
+    private String fileName = "D:\\Workspace\\code\\src\\ProjectTSP\\Thanh Xuân_packages.csv";
+    private Queue<Packages> thanhXuanQueue;
+
+    public ThanhXuanOffice() {
+        DataReader dataReader = new DataReader(fileName);
+        this.thanhXuanQueue = dataReader.readDataFromFile();
+    }
+
     public void deliverToOffice(Packages packages) {
         thanhXuanQueue.add(packages);
     }
