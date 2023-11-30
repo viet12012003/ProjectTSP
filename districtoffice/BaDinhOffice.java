@@ -6,7 +6,14 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class BaDinhOffice implements Office{
-    private Queue<Packages> baDinhQueue = new LinkedList<>();
+    private String fileName = "Ba Đình_packages.csv";
+    private Queue<Packages> baDinhQueue;
+
+    public BaDinhOffice() {
+        DataReader dataReader = new DataReader(fileName);
+        this.baDinhQueue = dataReader.readDataFromFile();
+    }
+
     @Override
     public void deliverToOffice(Packages packages) {
         baDinhQueue.add(packages);
@@ -32,6 +39,8 @@ public class BaDinhOffice implements Office{
     }
 
     public static void main(String[] args) {
-
+        Office baDinhOffice = new BaDinhOffice();
+        OfficeGUI baDinhGUI = new OfficeGUI(baDinhOffice);
+        baDinhGUI.show();
     }
 }

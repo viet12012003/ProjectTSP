@@ -4,9 +4,9 @@ import districtoffice.*;
 import receive.PackageQueueManager;
 import sender_information.Packages;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,6 +17,7 @@ public class TransitOffice {
     private PriorityQueue<Packages> packages = packageQueueManager.getPackageQueue();
     private JFrame frame;
     private JButton classifyButton;
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -66,8 +67,11 @@ public class TransitOffice {
 
         // In thông tin theo từng quận
         for (Map.Entry<String, Office> entry : districtOfficeMap.entrySet()) {
-            System.out.println("District: " + entry.getKey());
-            entry.getValue().printPackages();
+            String district = entry.getKey();
+            Office office = entry.getValue();
+            System.out.println("Quận : " + district);
+            office.printPackages();
+            writePackagesToCSV(district, office, district + "_packages.csv");
         }
     }
 
@@ -81,4 +85,24 @@ public class TransitOffice {
             System.out.println("ERROR! Unknown district: " + district);
         }
     }
+    public static void writePackagesToCSV(String district, Office office, String fileName) {
+        try (FileWriter writer = new FileWriter(fileName)) {
+            for (Packages packages : office.getPackageQueue()) {
+                writer.append(String.join(",",
+                                String.valueOf(packages.getId()),
+                                packages.getSender(),
+                                packages.getReceiver(),
+                                packages.getAddress(),
+                                packages.getGoods(),
+                                String.valueOf(packages.getWeight()),
+                                packages.getService()))
+                        .append("\n");
+            }
+
+            System.out.println("CSV file has been created successfully!");
+        } catch (IOException e) {
+            System.out.println("Error writing to CSV file: " + e.getMessage());
+        }
+    }
+
 }
