@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class BaDinhOffice implements Office{
-    private String fileName = "D:\\Workspace\\code\\src\\ProjectTSP\\Ba Đình_packages.csv";
+    private String fileName = "Ba Đình_packages.csv";
     private Queue<Packages> baDinhQueue;
 
     public BaDinhOffice() {

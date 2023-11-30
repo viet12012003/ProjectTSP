@@ -5,7 +5,7 @@ import java.util.Queue;
 
 public class CauGiayOffice implements Office{
     private Queue<Packages> cauGiayQueue ;
-    private String fileName = "D:\\Workspace\\code\\src\\ProjectTSP\\Cầu Giấy_packages.csv";
+    private String fileName = "Cầu Giấy_packages.csv";
 
     public CauGiayOffice() {
         DataReader dataReader = new DataReader(fileName);

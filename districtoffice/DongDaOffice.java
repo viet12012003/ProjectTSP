@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class DongDaOffice implements Office {
-    private String fileName = "D:\\Workspace\\code\\src\\ProjectTSP\\Đống Đa_packages.csv";
+    private String fileName = "Đống Đa_packages.csv";
 
     private Queue<Packages> dongDaQueue;
 

@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class TayHoOffice implements Office {
-    private String fileName = "D:\\Workspace\\code\\src\\ProjectTSP\\Tây Hồ_packages.csv";
+    private String fileName = "Tây Hồ_packages.csv";
     private Queue<Packages> tayHoQueue;
 
     public TayHoOffice() {
