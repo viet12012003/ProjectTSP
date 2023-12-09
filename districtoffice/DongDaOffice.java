@@ -6,8 +6,14 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class DongDaOffice implements Office {
+    private String fileName = "Đống Đa_packages.csv";
 
-    private Queue<Packages> dongDaQueue = new LinkedList<>();
+    private Queue<Packages> dongDaQueue;
+
+    public DongDaOffice() {
+        DataReader dataReader = new DataReader(fileName);
+        this.dongDaQueue = dataReader.readDataFromFile();
+    }
 
     @Override
     public void deliverToOffice(Packages packages) {

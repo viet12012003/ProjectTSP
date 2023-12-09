@@ -6,7 +6,14 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class TayHoOffice implements Office {
-    private Queue<Packages> tayHoQueue = new LinkedList<>();
+    private String fileName = "Tây Hồ_packages.csv";
+    private Queue<Packages> tayHoQueue;
+
+    public TayHoOffice() {
+        DataReader dataReader = new DataReader(fileName);
+        this.tayHoQueue = dataReader.readDataFromFile();
+    }
+
     @Override
     public void deliverToOffice(Packages packages) {
         tayHoQueue.add(packages);
