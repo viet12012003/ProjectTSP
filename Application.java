@@ -23,7 +23,7 @@ public class Application {
     public void runApp() {
         //Tao giao dien
         frame.setTitle("THÔNG TIN GỬI HÀNG - BƯU CỤC HÀ NỘI");
-        frame.setSize(1100, 800);
+        frame.setBounds(300,100,1100,800);
         frame.setBackground(Color.WHITE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
@@ -230,7 +230,7 @@ public class Application {
     // Hàm set up lại frame và hiển thị giao diện tiếp nhận và sắp xếp các đơn hàng cần được xử lý theo đúng yêu cầu
     public void postOfficeUI(PackageQueueManager packageQueueManager) {
         frame = new JFrame("BƯU CỤC TIẾP NHẬN");
-        frame.setSize(1000, 800);
+        frame.setBounds(300,100,1100,800);
         frame.setBackground(Color.WHITE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
@@ -270,7 +270,7 @@ public class Application {
         transitButton.addActionListener( e -> {
             PriorityQueue<Packages> packages = packageQueueManager.getPackageQueue();
             TransitOffice transitOffice = new TransitOffice(packages);
-            transitOffice.initialize(frame);
+            transitOffice.transit(frame);
         });
 
         frame.setVisible(true);

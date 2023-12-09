@@ -6,27 +6,52 @@ import sender_information.Packages;
 
 import java.util.*;
 import javax.swing.*;
-import java.awt.*;
 
 public class TransitOffice {
+    private CalculateDistanceAndTime cal = new CalculateDistanceAndTime();  // Để không phải khởi tạo nhiều lần, tốn thời gian
     private PriorityQueue<Packages> packages;
 
     public TransitOffice(PriorityQueue<Packages> packages) {
         this.packages = packages;
     }
 
-    public void initialize(JFrame frame) {
-        frame = new JFrame();
-        frame.setTitle("Transit Office");
-        frame.setBounds(100, 100, 400, 200);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        Map<String,Office> districtMap = classifyAndPrintPackages();
 
+    // Các thao tác sẽ thực hiện
+    public void transit(JFrame frame) {
+        frame.dispose();
+        JFrame processingFrame = new JFrame();
+        processingFrame.setTitle("Trung chuyển hàng hoá đến các quận");
+        processingFrame.setBounds(500,400,500,100);
+        processingFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        // Tớ in tạm ma trận ra console để mọi người dễ theo dõi cái ma trận kề biểu diễn đồ thị nha
-        Office dongda = districtMap.get("Thanh Xuân");
-        printGraph(buildNornalGraph(dongda));
+        JProgressBar progressBar = new JProgressBar();
+        progressBar.setIndeterminate(true); // Sử dụng hiệu ứng vô hạn cho progress bar
+        progressBar.setString("Hàng hoá đang được trung chuyển đến các quận và xử lý, vui lòng chờ...");
+        progressBar.setStringPainted(true);
+
+        processingFrame.add(progressBar);
+        processingFrame.setVisible(true);
+
+        SwingWorker<Void, Void> worker = new SwingWorker<>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                // Các công việc xử lý dữ liệu, phân loại, và hiển thị dữ liệu ở đây
+                // Test với Quận ĐỐng Đa
+                Map<String, Office> districtMap = classifyAndPrintPackages();
+                Office dongda = districtMap.get("Đống Đa");
+                printGraph(buildGraph(dongda));
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                processingFrame.dispose(); // Sau khi công việc đã xong, đóng frame hiển thị thông báo
+                // Tiếp tục với các hành động sau khi công việc kết thúc (nếu cần)
+            }
+        };
+
+        worker.execute(); // Bắt đầu thực hiện công việc trong background thread
+
     }
 
     public Map<String, Office> classifyAndPrintPackages() {
@@ -65,8 +90,7 @@ public class TransitOffice {
 
     // Lấy khoảng cách giữa hai địa điểm
     public double getDistance(Packages packages1, Packages packages2) {
-        CalculateDistanceAndTime cal = new CalculateDistanceAndTime(packages1.getAddress(), packages2.getAddress());
-        String distance = cal.calculateDistance();
+        String distance = cal.calculateDistance(packages1.getAddress(),packages2.getAddress());
         return extractDistanceValue(distance);
     }
 
@@ -78,45 +102,9 @@ public class TransitOffice {
     }
 
 
-    // Xây dựng ma trận kề biểu diễn quãng đường giữa các địa điểm trong quận ( Đối với đơn hoả tốc )
-//    public double[][] buildExpressGraph(Office district){
-//
-//        ArrayList<Packages> list = new ArrayList<>(); // Tạm thời lưu trữ các gói hàng hoả tốc
-//        while ( district.getPackageQueue().peek().getService().equals("Hoả tốc")){
-//            // Thêm gói hàng vào list
-//            Packages pack = district.getPackageQueue().poll();
-//            list.add(pack);
-//        }
-//
-//        int numOfPack = list.size();
-//
-//        double[][] graph = new double[numOfPack][numOfPack];        // Sử dụng ma trận kề để lưu đồ thị
-//
-//        Map<Integer,Packages> mapId = new HashMap<>();       // map để lưu các index tương ứng với gói hàng nào
-//
-//        for (int i = 0; i < numOfPack; i++) {
-//            mapId.put(i,list.get(i));
-//        }
-//
-//        // Update các trọng số của đồ thị
-//        for (int i = 0; i < graph.length; i++) {
-//            for (int j = 0; j < graph.length; j++) {
-//                Packages pack1 = mapId.get(i);
-//                Packages pack2 = mapId.get(j);
-//                // Gọi đến hàm getDistance để lấy khoảng cách
-//                double distance = getDistance(pack1,pack2);
-//                graph[i][j] = distance;
-//            }
-//        }
-//
-//        return graph;
-//    }
-
     // Xây dựng ma trận kề biểu diễn quãng đường giữa các địa điểm trong quận ( Đối với đơn giao hàng thường )
-    public double[][] buildNornalGraph(Office district){
-
-        ArrayList<Packages> list = new ArrayList<>(); // Tạm thời lưu trữ các gói hàng thường
-        // Vì đã lấy hết đơn hoả tốc nên chỉ cần xét đến khi queue trống
+    public double[][] buildGraph(Office district){
+        ArrayList<Packages> list = new ArrayList<>();
         while (!district.getPackageQueue().isEmpty()){
             // Thêm gói hàng vào list
             Packages pack = district.getPackageQueue().poll();
@@ -125,11 +113,11 @@ public class TransitOffice {
 
         int numOfPack = list.size();
 
-        double[][] graph = new double[numOfPack][numOfPack];        // Sử dụng ma trận kề để lưu đồ thị
+        double[][] graph = new double[numOfPack+1][numOfPack+1];        // Sử dụng ma trận kề để lưu đồ thị
 
         Map<Integer,Packages> mapId = new HashMap<>();       // map để lưu các index tương ứng với gói hàng nào
 
-        for (int i = 0; i < numOfPack; i++) {
+        for (int i = 0; i < numOfPack ; i++) {
             mapId.put(i,list.get(i));
         }
 
@@ -146,6 +134,7 @@ public class TransitOffice {
 
         return graph;
     }
+
 
     public void printGraph(double[][] graph){
         for (int i = 0; i < graph.length; i++) {

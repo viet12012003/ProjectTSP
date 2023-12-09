@@ -1,4 +1,4 @@
-package Map;
+package map;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -12,10 +12,15 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class CalculateDistanceAndTime {
-    public static void main(String[] args){
+
+    // Tạo một pool kết nối HTTP để sử dụng cho tất cả các yêu cầu
+    HttpClient client = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
+
+    public CalculateDistanceAndTime() {
+    }
+
+    public String calculateDistance(String address1, String address2) {
         String apiKey = "AhLWCVR0GXp_WtyyQMUJ0yub-3yrCfSlM3hvX98pe87fW1w7tUiWuJysdYjrRZm3";
-        String address1 = " 334 Nguyễn Trãi Thanh Xuân Hà Nội ";
-        String address2 = "xã cộng hòa - quốc oai";
         try {
             // Encode các địa chỉ để sử dụng trong URL
             String encodedAddress1 = URLEncoder.encode(address1, "UTF-8");
@@ -25,20 +30,20 @@ public class CalculateDistanceAndTime {
             String apiUrl1 = "http://dev.virtualearth.net/REST/v1/Locations?q=" + encodedAddress1 + "&key=" + apiKey;
             String apiUrl2 = "http://dev.virtualearth.net/REST/v1/Locations?q=" + encodedAddress2 + "&key=" + apiKey;
 
+
             // Gửi yêu cầu HTTP và nhận phản hồi
-            HttpClient client = HttpClient.newHttpClient();
-            HttpResponse<String> response1 = client.send(HttpRequest.newBuilder().uri(URI.create(apiUrl1)).build(), HttpResponse.BodyHandlers.ofString());
-            HttpResponse<String> response2 = client.send(HttpRequest.newBuilder().uri(URI.create(apiUrl2)).build(), HttpResponse.BodyHandlers.ofString());
+            // Sử dụng pool kết nối trong việc gửi các yêu cầu
+            HttpResponse<String> response1 = client.send(HttpRequest.newBuilder()
+                    .uri(URI.create(apiUrl1))
+                    .build(), HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response2 = client.send(HttpRequest.newBuilder()
+                    .uri(URI.create(apiUrl2))
+                    .build(), HttpResponse.BodyHandlers.ofString());
 
             // Trích xuất thông tin vị trí từ phản hồi JSON
             double[] location1 = extractLocation(response1.body());
             double[] location2 = extractLocation(response2.body());
 
-            // In thông tin vị trí
-            System.out.println("Latitude 1: " + location1[0]);
-            System.out.println("Longitude 1: " + location1[1]);
-            System.out.println("Latitude 2: " + location2[0]);
-            System.out.println("Longitude 2: " + location2[1]);
             HttpRequest request1 = HttpRequest.newBuilder()
                     .uri(URI.create("https://trueway-matrix.p.rapidapi.com/CalculateDrivingMatrix?origins=" + location1[0] + "%2C" + location1[1] + "&destinations=" + location2[0] + "%2C" + location2[1]))
                     .header("X-RapidAPI-Key", "040721126bmsh56726d0fdc3a5e0p1502d3jsn7966129bdfcf")
@@ -46,10 +51,11 @@ public class CalculateDistanceAndTime {
                     .method("GET", HttpRequest.BodyPublishers.noBody())
                     .build();
             HttpResponse<String> response3 = HttpClient.newHttpClient().send(request1, HttpResponse.BodyHandlers.ofString());
-            System.out.println(response3.body());
+            return response3.body();
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     private static double[] extractLocation(String json) {
@@ -70,5 +76,10 @@ public class CalculateDistanceAndTime {
             e.printStackTrace();
             return new double[]{0.0, 0.0};
         }
+    }
+
+    public static void main(String[] args) {
+        CalculateDistanceAndTime cal = new CalculateDistanceAndTime();
+        System.out.println(cal.calculateDistance("7 phố Huỳnh Thúc Kháng, Láng Thượng, Đống Đa", "21 phố Thái Hà, Trung Liệt, Đống Đa"));
     }
 }
