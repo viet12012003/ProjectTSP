@@ -9,7 +9,7 @@ public class Packages implements Serializable {
     private String address; // Dia chi nguoi nhan
     private String goods;  // Ten hang hoa
     private double weight; // Trong luong hang hoa (kg)
-    private String service; // true: Hoa toc  false: Thuong
+    private String service; // Dich vu giao hang
 
     public Packages(int id, String sender, String receiver, String address, String goods, double weight, String service) {
         this.id = id;

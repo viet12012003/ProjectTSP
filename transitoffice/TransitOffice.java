@@ -88,6 +88,7 @@ public class TransitOffice {
         }
     }
 
+
     // Lấy khoảng cách giữa hai địa điểm
     public double getDistance(Packages packages1, Packages packages2) {
         String distance = cal.calculateDistance(packages1.getAddress(),packages2.getAddress());
@@ -102,7 +103,7 @@ public class TransitOffice {
     }
 
 
-    // Xây dựng ma trận kề biểu diễn quãng đường giữa các địa điểm trong quận ( Đối với đơn giao hàng thường )
+    // Xây dựng ma trận kề biểu diễn quãng đường giữa các địa điểm trong quận ( Tính cả điểm xuất phát là bưu cục của từng quận )
     public double[][] buildGraph(Office district){
         ArrayList<Packages> list = new ArrayList<>();
         while (!district.getPackageQueue().isEmpty()){
@@ -115,10 +116,12 @@ public class TransitOffice {
 
         double[][] graph = new double[numOfPack+1][numOfPack+1];        // Sử dụng ma trận kề để lưu đồ thị
 
-        Map<Integer,Packages> mapId = new HashMap<>();       // map để lưu các index tương ứng với gói hàng nào
+        Map<Integer,Packages> mapId = new HashMap<>();       // map để lưu các index tương ứng với gói hàng nào (địa chỉ nào)
+
+        mapId.put(0,district.getOFFICE_ADDRESS());
 
         for (int i = 0; i < numOfPack ; i++) {
-            mapId.put(i,list.get(i));
+            mapId.put(i+1,list.get(i));
         }
 
         // Update các trọng số của đồ thị

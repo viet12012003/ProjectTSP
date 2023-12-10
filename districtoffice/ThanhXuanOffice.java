@@ -6,12 +6,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class ThanhXuanOffice implements Office {
-    private String fileName = "Thanh Xuân_packages.csv";
+    private final String OFFICE_ADDRESS = "51, Đường Vũ Trọng Phụng, Phường Thanh Xuân Trung, Thanh Xuân";
     private Queue<Packages> thanhXuanQueue;
 
     public ThanhXuanOffice() {
-        DataReader dataReader = new DataReader(fileName);
-        this.thanhXuanQueue = dataReader.readDataFromFile();
+        thanhXuanQueue = new LinkedList<>();
     }
 
     public void deliverToOffice(Packages packages) {
@@ -35,9 +34,7 @@ public class ThanhXuanOffice implements Office {
         return thanhXuanQueue;
     }
 
-    public static void main(String[] args) {
-        Office thanhXuanOffice = new ThanhXuanOffice();
-        OfficeGUI thanhXuanGUI = new OfficeGUI(thanhXuanOffice);
-        thanhXuanGUI.show();
+    public Packages getOFFICE_ADDRESS() {
+        return new Packages(-1,null,null,OFFICE_ADDRESS,null,-1,null);
     }
 }
