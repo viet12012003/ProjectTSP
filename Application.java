@@ -23,7 +23,7 @@ public class Application {
     public void runApp() {
         //Tao giao dien
         frame.setTitle("THÔNG TIN GỬI HÀNG - BƯU CỤC HÀ NỘI");
-        frame.setBounds(300,100,1100,800);
+        frame.setBounds(300,50,1100,800);
         frame.setBackground(Color.WHITE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
@@ -212,7 +212,7 @@ public class Application {
         // Sau khi ấn nút phân loại, hàng hoá sẽ được phân loại và xử lí theo thứ tự: đơn hoả tốc -> đơn thường
         processButton.addActionListener( e -> {
             frame.dispose();
-            processingPackages("C:\\Users\\HAI YEN\\Documents\\GitHub\\Final\\ProjectTSP\\data.csv");  // filename dang test
+            processingPackages("data.csv");  // filename dang test
         });
 
         frame.setVisible(true);
@@ -270,11 +270,12 @@ public class Application {
         transitButton.addActionListener( e -> {
             PriorityQueue<Packages> packages = packageQueueManager.getPackageQueue();
             TransitOffice transitOffice = new TransitOffice(packages);
-            transitOffice.transit(frame);
+            transitOffice.transitMenu(frame);
         });
 
         frame.setVisible(true);
     }
+
 
 
     public static void main(String[] args) {
