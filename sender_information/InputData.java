@@ -12,13 +12,12 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class InputData {
-    public static void main(String[] args) {
-        String filename = inputData();
-    }
+    public int autoId = 1;
 
-    public static String inputData() {
+    public String inputData() {
         //Tao giao dien
-        JFrame frame = new JFrame("THÔNG TIN GỬI HÀNG - BƯU CỤC HÀ NỘI");
+        JFrame frame = new JFrame();
+        frame.setTitle("THÔNG TIN GỬI HÀNG - BƯU CỤC HÀ NỘI");
         frame.setSize(1100, 800);
         frame.setBackground(Color.WHITE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -159,10 +158,9 @@ public class InputData {
             ex.printStackTrace();
         }
 
-        final int[] id = {1};    // Bắt đầu đơn hàng từ 1
 
         submitButton.addActionListener(e -> {
-            String idGoods = Integer.toString(id[0]);
+            String idGoods = Integer.toString(autoId);
             String sender = senderField.getText();
             String receiver = receiverField.getText();
             String receiverAddress = receiverAddressField.getText();
@@ -199,12 +197,26 @@ public class InputData {
                 ex.printStackTrace();
             }
 
-            id[0]++;
+            autoId++;
+        });
+
+        JButton transhipButton = new JButton("Trung chuyển");
+        transhipButton.setBounds(390, 710, 120, 30);
+        frame.add(transhipButton);
+
+        // Sau khi ấn nút trung chuyển, hàng hoá sẽ được phân loại và xử lí theo thứ tự: đơn hoả tốc -> đơn thường
+        transhipButton.addActionListener( e -> {
+            frame.dispose();
         });
 
         frame.setVisible(true);
 
         return fileName;
+    }
+
+    public static void main(String[] args) {
+        InputData inputData = new InputData();
+        String filename = inputData.inputData();
     }
 
 }

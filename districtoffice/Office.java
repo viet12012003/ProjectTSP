@@ -11,4 +11,6 @@ public  interface Office {
      void printPackages();
      Queue<Packages> getPackageQueue();
 
+     Packages getOFFICE_ADDRESS();
+
 }
