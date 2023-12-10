@@ -118,7 +118,7 @@ public class TransitOffice {
 
         Map<Integer,Packages> mapId = new HashMap<>();       // map để lưu các index tương ứng với gói hàng nào (địa chỉ nào)
 
-        mapId.put(0,district.getOFFICE_ADDRESS());
+        mapId.put(0,district.getOFFICE_ADDRESS());          // Địa điểm xuất phát là vị trí bưu cục của các quận
 
         for (int i = 0; i < numOfPack ; i++) {
             mapId.put(i+1,list.get(i));
