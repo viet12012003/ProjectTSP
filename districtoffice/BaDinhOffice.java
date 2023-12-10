@@ -6,12 +6,12 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class BaDinhOffice implements Office{
-    private String fileName = "Ba Đình_packages.csv";
     private Queue<Packages> baDinhQueue;
 
+    private final String OFFICE_ADDRESS = "218, Doi Can St, Phường Liễu Giai, Ba Đình";
+
     public BaDinhOffice() {
-        DataReader dataReader = new DataReader(fileName);
-        this.baDinhQueue = dataReader.readDataFromFile();
+        baDinhQueue = new LinkedList<>();
     }
 
     @Override
@@ -33,14 +33,14 @@ public class BaDinhOffice implements Office{
         }
     }
 
+    public Packages getOFFICE_ADDRESS() {
+        return new Packages(-1,null,null,OFFICE_ADDRESS,null,-1,null);
+    }
+
     @Override
     public Queue<Packages> getPackageQueue() {
         return baDinhQueue;
     }
 
-    public static void main(String[] args) {
-        Office baDinhOffice = new BaDinhOffice();
-        OfficeGUI baDinhGUI = new OfficeGUI(baDinhOffice);
-        baDinhGUI.show();
-    }
+
 }

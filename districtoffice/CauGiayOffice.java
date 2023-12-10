@@ -1,15 +1,17 @@
 package districtoffice;
 
 import sender_information.Packages;
+
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class CauGiayOffice implements Office{
-    private Queue<Packages> cauGiayQueue ;
-    private String fileName = "Cầu Giấy_packages.csv";
+
+    private Queue<Packages> cauGiayQueue;
+    private final String OFFICE_ADDRESS = "165, Đường Cầu Giấy, Quan Hoa, Quận Cầu Giấy";
 
     public CauGiayOffice() {
-        DataReader dataReader = new DataReader(fileName);
-        this.cauGiayQueue = dataReader.readDataFromFile();
+        cauGiayQueue = new LinkedList<>();
     }
 
     @Override
@@ -30,14 +32,14 @@ public class CauGiayOffice implements Office{
         }
     }
 
+    public Packages getOFFICE_ADDRESS() {
+        return new Packages(-1,null,null,OFFICE_ADDRESS,null,-1,null);
+    }
+
     @Override
     public Queue<Packages> getPackageQueue() {
         return cauGiayQueue;
     }
-    public static void main(String[] args) {
-        Office cauGiayOffice = new CauGiayOffice();
-        OfficeGUI cauGiayGUI = new OfficeGUI(cauGiayOffice);
-        cauGiayGUI.show();
-    }
+
 
 }
