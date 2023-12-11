@@ -83,18 +83,4 @@ public class SimulatedAnnealing {
         }
     }
 
-    public static void main(String[] args) {
-        double[][] distanceMatrix = {
-                {0.0, 1576.0, 1137.0, 2975.0, 326.0},
-                {1254.0, 0.0, 1483.0, 3415.0, 1580.0},
-                {1190.0, 1772.0, 0.0, 2536.0, 1512.0},
-                {2743.0, 3325.0, 2068.0, 0.0, 2584.0},
-                {326.0, 1901.0, 1461.0, 2667.0, 0.0},
-        };
-
-//        int[] resultTour = simulatedAnnealing(distanceMatrix);
-//
-//        System.out.println("Best Tour: " + Arrays.toString(resultTour));
-//        System.out.println("Best Tour Cost: " + calculateTourCost(resultTour, distanceMatrix));
-    }
 }
