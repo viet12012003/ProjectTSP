@@ -1,16 +1,19 @@
 package districtoffice;
 
 import sender_information.Packages;
+import shipper.Shipper;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class TayHoOffice implements Office {
+    private Shipper shipper;
     private Queue<Packages> tayHoQueue;
     private final String OFFICE_ADDRESS = "588, Đường Lạc Long Quân, Phường Nhật Tân, Tây Hồ";
 
     public TayHoOffice() {
         tayHoQueue = new LinkedList<>();
+        this.shipper = new Shipper(this);
     }
 
     @Override
@@ -29,6 +32,17 @@ public class TayHoOffice implements Office {
             System.out.println(packages.toString());
         }
     }
+
+    @Override
+    public Shipper getShipper() {
+        return shipper;
+    }
+
+    @Override
+    public void setShipper(Shipper shipper) {
+        this.shipper = shipper;
+    }
+
 
     @Override
     public Queue<Packages> getPackageQueue() {

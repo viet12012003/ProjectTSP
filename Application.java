@@ -23,7 +23,7 @@ public class Application {
     public void runApp() {
         //Tao giao dien
         frame.setTitle("THÔNG TIN GỬI HÀNG - BƯU CỤC HÀ NỘI");
-        frame.setBounds(300,50,1100,800);
+        frame.setBounds(300, 50, 1100, 800);
         frame.setBackground(Color.WHITE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
@@ -97,13 +97,13 @@ public class Application {
         wardMap.put("Ba Đình", new String[]{"Cống Vị", "Điện Biên", "Đội Cấn", "Giảng Võ", "Kim Mã", "Liễu Giai", "Ngọc Hà",
                 "Ngọc Khánh", "Nguyễn Trung Trực", "Phúc Xá", "Quán Thánh", "Thành Công", "Trúc Bạch", "Vĩnh Phúc"});
         // Thêm phường cho các quận khác tương tự
-        wardMap.put("Cầu Giấy",new String[]{"Nghĩa Đô", "Nghĩa Tân", "Mai Dịch", "Dịch Vọng", "Dịch Vọng Hậu", "Quan Hoa", "Yên Hoà", "Trung Hoà"});
-        wardMap.put("Đống Đa",new String[]{"Cát Linh", "Văn Miếu", "Quốc Tử Giám", "Láng Thượng", "Láng Hạ", "Ô Chợ Dừa", "Văn Chương",
+        wardMap.put("Cầu Giấy", new String[]{"Nghĩa Đô", "Nghĩa Tân", "Mai Dịch", "Dịch Vọng", "Dịch Vọng Hậu", "Quan Hoa", "Yên Hoà", "Trung Hoà"});
+        wardMap.put("Đống Đa", new String[]{"Cát Linh", "Văn Miếu", "Quốc Tử Giám", "Láng Thượng", "Láng Hạ", "Ô Chợ Dừa", "Văn Chương",
                 "Hàng Bột", "Khâm Thiên", "Thổ Quan", "Nam Đồng", "Trung Phụng", "Quang Trung", "Trung Liệt",
                 "Phương Liên", "Thịnh Quang", "Trung Tự", "Kim Liên", "Phương Mai", "Ngã Tư Sở", "Khương Thượng"});
-        wardMap.put("Thanh Xuân",new String[]{"Thượng Đình", "Hạ Đình", "Thanh Xuân Bắc", "Thanh Xuân Trung", "Thanh Xuân Nam", "Nhân Chính", "Khương Trung",
+        wardMap.put("Thanh Xuân", new String[]{"Thượng Đình", "Hạ Đình", "Thanh Xuân Bắc", "Thanh Xuân Trung", "Thanh Xuân Nam", "Nhân Chính", "Khương Trung",
                 "Khương Mai", "Khương Đình", "Kim Giang", "Phương Liệt"});
-        wardMap.put("Tây Hồ",new String[]{"Bưởi", "Nhật Tân", "Phú Thượng", "Quảng An", "Thuỵ Khê", "Tứ Liên", "Xuân La", "Yên Phụ"});
+        wardMap.put("Tây Hồ", new String[]{"Bưởi", "Nhật Tân", "Phú Thượng", "Quảng An", "Thuỵ Khê", "Tứ Liên", "Xuân La", "Yên Phụ"});
         // Sự kiện khi chọn quận
         districtCombox.addActionListener(new ActionListener() {
             @Override
@@ -133,7 +133,7 @@ public class Application {
         frame.add(submitButton);
 
         // Thêm bảng để hiển thị thông tin
-        String[] columns = {"Mã đơn hàng", "Người gửi", "Người nhận", "Địa chỉ người nhận", "Phường", "Quận", "Tên hàng hoá","Khối lượng", "Dịch vụ"};
+        String[] columns = {"Mã đơn hàng", "Người gửi", "Người nhận", "Địa chỉ người nhận", "Phường", "Quận", "Tên hàng hoá", "Khối lượng", "Dịch vụ"};
         DefaultTableModel model = new DefaultTableModel(columns, 0);
         JTable table = new JTable(model);
 
@@ -210,7 +210,7 @@ public class Application {
         frame.add(processButton);
 
         // Sau khi ấn nút phân loại, hàng hoá sẽ được phân loại và xử lí theo thứ tự: đơn hoả tốc -> đơn thường
-        processButton.addActionListener( e -> {
+        processButton.addActionListener(e -> {
             frame.dispose();
             processingPackages("data.csv");  // filename dang test
         });
@@ -220,7 +220,7 @@ public class Application {
     }
 
     // Hàm gọi đến các hàm xử lý hàng hoá
-    public void processingPackages(String filename){
+    public void processingPackages(String filename) {
         PackageQueueManager packageQueueManager = new PackageQueueManager(filename);
         postOfficeUI(packageQueueManager);
         // Sau khi được phân loại, hàng hoá sẽ được chuyển về các quận theo thứ tự ưu tiên
@@ -230,7 +230,7 @@ public class Application {
     // Hàm set up lại frame và hiển thị giao diện tiếp nhận và sắp xếp các đơn hàng cần được xử lý theo đúng yêu cầu
     public void postOfficeUI(PackageQueueManager packageQueueManager) {
         frame = new JFrame("BƯU CỤC TIẾP NHẬN");
-        frame.setBounds(300,100,1100,800);
+        frame.setBounds(300, 100, 1100, 800);
         frame.setBackground(Color.WHITE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
@@ -267,7 +267,7 @@ public class Application {
         frame.add(transitButton, BorderLayout.SOUTH); // Đặt nút ở vị trí phía dưới của frame
 
         // Hành động sau khi ấn nút trung chuyển
-        transitButton.addActionListener( e -> {
+        transitButton.addActionListener(e -> {
             PriorityQueue<Packages> packages = packageQueueManager.getPackageQueue();
             TransitOffice transitOffice = new TransitOffice(packages);
             transitOffice.transitMenu(frame);
@@ -275,7 +275,6 @@ public class Application {
 
         frame.setVisible(true);
     }
-
 
 
     public static void main(String[] args) {
