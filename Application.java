@@ -23,14 +23,18 @@ public class Application {
     public void runApp() {
         //Tao giao dien
         frame.setTitle("THÔNG TIN GỬI HÀNG - BƯU CỤC HÀ NỘI");
-        frame.setBounds(300, 50, 1100, 800);
+        frame.setBounds(300, 50, 1100, 830);
         frame.setBackground(Color.WHITE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null);
+        GroupLayout layout = new javax.swing.GroupLayout(frame.getContentPane());
+        frame.setLayout(layout);
+        frame.setResizable(false);
+
+        frame.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
 
         // Tiêu đề cho phần nhập thông tin
         JLabel infoLabel = new JLabel("ĐĂNG KÝ CHUYỂN PHÁT");
-        infoLabel.setBounds(370, 20, 200, 30);
+        infoLabel.setBounds(430, 20, 200, 30);
         frame.add(infoLabel);
 
         JLabel senderLabel = new JLabel("Người gửi:");
@@ -38,7 +42,7 @@ public class Application {
         frame.add(senderLabel);
 
         JTextField senderField = new JTextField();
-        senderField.setBounds(350, 50, 200, 30);
+        senderField.setBounds(350, 50, 300, 30);
         frame.add(senderField);
 
         JLabel receiverLabel = new JLabel("Người nhận:");
@@ -46,7 +50,7 @@ public class Application {
         frame.add(receiverLabel);
 
         JTextField receiverField = new JTextField();
-        receiverField.setBounds(350, 100, 200, 30);
+        receiverField.setBounds(350, 100, 300, 30);
         frame.add(receiverField);
 
         JLabel receiverAddressLabel = new JLabel("Địa chỉ nhận:");
@@ -54,7 +58,7 @@ public class Application {
         frame.add(receiverAddressLabel);
 
         JTextField receiverAddressField = new JTextField();
-        receiverAddressField.setBounds(350, 150, 200, 30);
+        receiverAddressField.setBounds(350, 150, 300, 30);
         frame.add(receiverAddressField);
 
         JLabel goodsNameLabel = new JLabel("Tên hàng hoá:");
@@ -62,7 +66,7 @@ public class Application {
         frame.add(goodsNameLabel);
 
         JTextField goodsNameField = new JTextField();
-        goodsNameField.setBounds(350, 200, 200, 30);
+        goodsNameField.setBounds(350, 200, 300, 30);
         frame.add(goodsNameField);
 
         JLabel weightLabel = new JLabel("Khối lượng (kg):");
@@ -70,7 +74,7 @@ public class Application {
         frame.add(weightLabel);
 
         JTextField weightField = new JTextField();
-        weightField.setBounds(350, 250, 200, 30);
+        weightField.setBounds(350, 250, 300, 30);
         frame.add(weightField);
 
         //Chọn Quận
@@ -80,7 +84,7 @@ public class Application {
 
         String[] district = {"Ba Đình", "Cầu Giấy", "Đống Đa", "Thanh Xuân", "Tây Hồ"};
         JComboBox<String> districtCombox = new JComboBox<>(district);
-        districtCombox.setBounds(350, 300, 200, 30);
+        districtCombox.setBounds(350, 300, 300, 30);
         frame.add(districtCombox);
 
         //Chọn Phường
@@ -89,7 +93,7 @@ public class Application {
         frame.add(wardsLabel);
 
         JComboBox<String> wardCombox = new JComboBox<>();
-        wardCombox.setBounds(350, 350, 200, 30);
+        wardCombox.setBounds(350, 350, 300, 30);
         frame.add(wardCombox);
 
         // Tạo bản sao của danh sách phường theo từng quận
@@ -125,11 +129,11 @@ public class Application {
 
         String[] services = {"Hỏa tốc", "Giao hàng thường"};
         JComboBox<String> serviceComboBox = new JComboBox<>(services);
-        serviceComboBox.setBounds(350, 400, 200, 30);
+        serviceComboBox.setBounds(350, 400, 300, 30);
         frame.add(serviceComboBox);
 
         JButton submitButton = new JButton("Xác nhận");
-        submitButton.setBounds(390, 450, 100, 30);
+        submitButton.setBounds(450, 450, 100, 30);
         frame.add(submitButton);
 
         // Thêm bảng để hiển thị thông tin
@@ -206,7 +210,7 @@ public class Application {
         });
 
         JButton processButton = new JButton("Phân loại và sắp xếp");
-        processButton.setBounds(350, 710, 200, 30);
+        processButton.setBounds(410, 710, 200, 30);
         frame.add(processButton);
 
         // Sau khi ấn nút phân loại, hàng hoá sẽ được phân loại và xử lí theo thứ tự: đơn hoả tốc -> đơn thường
@@ -230,10 +234,11 @@ public class Application {
     // Hàm set up lại frame và hiển thị giao diện tiếp nhận và sắp xếp các đơn hàng cần được xử lý theo đúng yêu cầu
     public void postOfficeUI(PackageQueueManager packageQueueManager) {
         frame = new JFrame("BƯU CỤC TIẾP NHẬN");
-        frame.setBounds(300, 100, 1100, 800);
+        frame.setBounds(300, 100, 1100, 830);
         frame.setBackground(Color.WHITE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
+        frame.setResizable(false);
 
         // Hiển thị thông tin đã tiếp nhận
         // Thêm bảng để hiển thị thông tin
