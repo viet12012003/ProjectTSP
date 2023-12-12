@@ -57,6 +57,6 @@ public class DongDaOffice implements Office {
     }
 
     public Packages getOFFICE_ADDRESS() {
-        return new Packages(-1, null, null, OFFICE_ADDRESS, null, -1, null);
+        return new Packages(-1, null, null, OFFICE_ADDRESS, null, null, null);
     }
 }

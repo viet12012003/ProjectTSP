@@ -3,21 +3,21 @@ package sender_information;
 import java.io.Serializable;
 
 public class Packages implements Serializable {
-    private int id; // ID don hang
-    private String sender;  // Ho ten nguoi gui
-    private String receiver;  // Ho ten nguoi nhan
-    private String address; // Dia chi nguoi nhan
-    private String goods;  // Ten hang hoa
-    private double weight; // Trong luong hang hoa (kg)
-    private String service; // Dich vu giao hang
+    private int id; // ID đơn hàng
+    private String sender;  // Họ tên người gửi
+    private String receiver;  // Họ tên người nhận
+    private String address; // Địa chỉ người nhận
+    private String goods;  // Tên đơn hàng
+    private String phonenumber; // Số điện thoại người nhận
+    private String service; // Dịch vụ giao hàng
 
-    public Packages(int id, String sender, String receiver, String address, String goods, double weight, String service) {
+    public Packages(int id, String sender, String receiver, String address, String goods, String phonenumber, String service) {
         this.id = id;
         this.sender = sender;
         this.receiver = receiver;
         this.address = address;
         this.goods = goods;
-        this.weight = weight;
+        this.phonenumber = phonenumber;
         this.service = service;
     }
 
@@ -61,12 +61,12 @@ public class Packages implements Serializable {
         this.service = service;
     }
 
-    public double getWeight() {
-        return weight;
+    public String getPhonenumber() {
+        return phonenumber;
     }
 
-    public void setWeight(double weight) {
-        this.weight = weight;
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 
     public int getId() {
@@ -79,14 +79,13 @@ public class Packages implements Serializable {
 
     @Override
     public String toString() {
-        return "Packages{" +
-                "id=" + id +
-                ", sender='" + sender + '\'' +
-                ", receiver='" + receiver + '\'' +
-                ", address='" + address + '\'' +
-                ", goods='" + goods + '\'' +
-                ", weight=" + weight +
-                ", service='" + service + '\'' +
-                '}';
+        return "Đơn hàng[ " +
+                "Mã:" + id +
+                ", Người gửi: " + sender +
+                ", người nhận: " + receiver +
+                ", Địa chỉ: " + address +
+                ", Tên sản phẩm: " + goods +
+                ", SĐT: " + phonenumber +
+                ']';
     }
 }

@@ -31,10 +31,10 @@ public class DataReader {
                     String receiver = data[2];
                     String address = data[3] + ", " + data[4] + ", " + data[5];
                     String goods = data[6];
-                    double weight = Double.parseDouble(data[7]);
+                    String phone = data[7];
                     String service = data[8];
 
-                    Packages pack = new Packages(id, sender, receiver, address, goods, weight, service);
+                    Packages pack = new Packages(id, sender, receiver, address, goods, phone, service);
                     packageQueue.offer(pack);
                 }
             }

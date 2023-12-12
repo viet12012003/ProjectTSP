@@ -99,14 +99,13 @@ public class Shipper {
         return graph;
     }
 
-    public void ship(JFrame frame){
+    public void ship(){
         // Xoá bớt đơn hàng trong queue
         queue.poll();
-
     }
 
     // Show các đơn hàng shipper đang giao
-    public void show(JTable table, DefaultTableModel model) {
+    public void showPackageQueue(JTable table, DefaultTableModel model) {
         if (queue.size() == 0){
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
@@ -121,7 +120,7 @@ public class Shipper {
         // Lấy dữ liệu từ PriorityQueue và hiển thị trên bảng
         while (!tempQueue.isEmpty()) {
             Packages pack = tempQueue.poll();
-            model.addRow(new Object[]{pack.getId(), pack.getSender(), pack.getReceiver(), pack.getAddress(), pack.getGoods(), pack.getWeight(), pack.getService()});
+            model.addRow(new Object[]{pack.getId(), pack.getSender(), pack.getReceiver(), pack.getAddress(), pack.getGoods(), pack.getPhonenumber(), pack.getService()});
         }
         table.setModel(model);
     }
