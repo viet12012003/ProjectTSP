@@ -1,50 +1,50 @@
-1,Nguyễn Vân Anh,Nguyễn Thị Bình,123 Phố Nguyễn Thái Học, Văn Miếu, Đống Đa,Văn Miếu,Đống Đa,Quần áo,10,Hỏa tốc
-2,Trần Bảo Quốc,Nguyễn Thái Bảo,12 Phố Ngô Sỹ Liên, Văn Miếu, Đống Đa,Văn Miếu,Đống Đa,Đồ điện tử,5,Giao hàng thường
-3,Lê Văn Binh,Nguyễn Ngọc Dương,36 Phố Nguyễn Khuyến, Văn Miếu, Đống Đa,Văn Miếu,Đống Đa,Đồ gia dụng,9,Hỏa tốc
-4,Lê Mạnh Cương,Trần Khánh Dũng,133 Phố Thái Hà, Trung Liệt, Đống Đa,Trung Liệt,Đống Đa,Samsung Z Fold 5 ,0.2,Hỏa tốc
-5,Bùi Ngọc Khánh,Phạm Văn Toàn,5 Ngõ 178 Thái Hà, Trung Liệt, Đống Đa,Trung Liệt,Đống Đa,Laptop Lenovo Idea Think Pad 5 Pro,2.1,Hỏa tốc
-6,Nguyễn Văn Linh,Đỗ Bách Khoa,Ngõ 100 Phố Yên Lãng, Thịnh Quang, Đống Đa,Thịnh Quang,Đống Đa,Thực phẩm,8,Giao hàng thường
-7,Nguyễn Thị Hương,Nguyễn Hương Giang,88 Phố Láng Hạ, Láng Hạ, Đống Đa,Láng Hạ,Đống Đa,Rayban Camera Glasses,1,Giao hàng thường
-8,Lê Thị Giang,Trần Quốc Bảo,77 Đường Nguyễn Chí Thanh, Láng Thượng, Đống Đa,Láng Thượng,Đống Đa,Books,4,Giao hàng thường
-9,Vương Thành Trung,Nguyễn Hữu Chiến,131 Phố Tôn Đức Thắng, Thổ Quan, Đống Đa,Thổ Quan,Đống Đa,Frank Fruits,7.6,Giao hàng thường
-10,Trần Văn Doanh,Đỗ Khởi Nghiệp,25, Trung Phụng, Đống Đa,Trung Phụng,Đống Đa,Accessories,20,Giao hàng thường
-11,Huỳnh Anh Tuấn,Lê Thúy Hằng,28A Điện Biên Phủ, Điện Biên, Ba Đình,Điện Biên,Ba Đình,SH 150i,100,Hỏa tốc
-12,Đặng Quang Vinh,Ngô Đức Minh,5 Phố Phan Kế Bính, Kim Mã, Ba Đình,Kim Mã,Ba Đình,Austrlia Door,20.5,Giao hàng thường
-13,Dương Hoàng Yến,Hoàng Tuấn Kiệt,54 Phố Liễu Giai, Cống Vị, Ba Đình,Cống Vị,Ba Đình,Đồ nội thất,99,Hỏa tốc
-14,Hồ Quang Việt,Trần Thành Khải,6B Phố Láng Hạ, Thành Công, Ba Đình,Thành Công,Ba Đình,Mirror Luxury,30.5,Hỏa tốc
-15,Nguyễn Thị Phượng,Lê Hữu Sơn,29 Phố Liễu Giai, Ngọc Khánh, Ba Đình,Ngọc Khánh,Ba Đình,Huawei Smart Watch,5.4,Giao hàng thường
-16,Mai Thi Thu Trà,Trần Khánh Ly,1 Phố Ngọc Hà, Đội Cấn, Ba Đình,Đội Cấn,Ba Đình,EnergyZ Super Power,27,Giao hàng thường
-17,Hà Ngọc Khánh,Phan Trung Nghĩa,345 Phố Đội Cấn, Liễu Giai, Ba Đình,Liễu Giai,Ba Đình,Bricks,45.3,Giao hàng thường
-18,Trần Hoàng Anh,Vũ Đức Hoàng,30 Phố Kim Mã, Kim Mã, Ba Đình,Kim Mã,Ba Đình,Pet items,34,Giao hàng thường
-19,Phạm Linh Chi,Vương Thu Phương,32 Phó Đức Chính, Trúc Bạch, Ba Đình,Trúc Bạch,Ba Đình,Sun glasses,5.8,Giao hàng thường
-20,Nguyễn Thị Huyền Thư,Nguyễn Phú Trường,15 Phố Ngọc Khánh, Giảng Võ, Ba Đình,Giảng Võ,Ba Đình,Certificate,1.9,Giao hàng thường
-21,Lê Thị Thu Thảo,Huỳnh Văn Đông,93 Hoàng Quốc Việt, Nghĩa Đô, Cầu Giấy,Nghĩa Đô,Cầu Giấy,Samsung inverter,50,Hỏa tốc
-22,Bạch Vân Thanh,Hà Phương Uyên,81 Đường Trần Cung, Nghĩa Tân, Cầu Giấy,Nghĩa Tân,Cầu Giấy,Vending Machine,98,Giao hàng thường
-23,Nguyễn Đức Nam,Phạm Trung Kiên,74 Phố Phạm Thận Duật, Mai Dịch, Cầu Giấy,Mai Dịch,Cầu Giấy,Vegetable,6,Giao hàng thường
-24,Phạm Hồng Thu,Trần Minh Huyền,1 Ngõ 10 Đường Nguyễn Văn Huyên, Dịch Vọng, Cầu Giấy,Dịch Vọng,Cầu Giấy,Thực phẩm sạch,17.9,Giao hàng thường
-25,Mai Thúy Hồng,Đỗ Xuân Phúc,29 Ngõ 2 Trần Kim Xuyến, Yên Hòa, Cầu Giấy,Yên Hoà,Cầu Giấy,Set Buffet chay,3,Hỏa tốc
-26,Dương Thu Trang,Hoàng Xuân Tráng,18 Ngõ 34 Nguyễn Thị Định, Trung Hòa, Cầu Giấy,Trung Hoà,Cầu Giấy,Drink & Coffee,4.2,Giao hàng thường
-27,Bùi Thị Lan,Nguyễn Ánh Dương,34 Phố Duy Tân, Dịch Vọng Hậu, Cầu Giấy,Dịch Vọng Hậu,Cầu Giấy,Stomach tube,24,Hỏa tốc
-28,Nguyễn Diệu Linh,Phan Xuân Long,6 Đường Nguyễn Khánh Toàn, Quan Hoa, Cầu Giấy,Quan Hoa,Cầu Giấy,Voucher spa,0.8,Hỏa tốc
-29,Đặng Như Thành,Hồ Phú Lộc,24 Ngõ 52 Quan Nhân, Trung Hòa, Cầu Giấy,Trung Hoà,Cầu Giấy,Set lẩu chay,3,Giao hàng thường
-30,Lê Đình Hoàng,Nguyễn Xuân Thành,95 Phố Trần Thái Tông, Dịch Vọng, Cầu Giấy,Dịch Vọng,Cầu Giấy,Insurance,2.8,Giao hàng thường
-31,Ngô Hải Yến,Nguyễn Yến Phương,52 Ngõ 12 phố Chính Kinh, Nhân Chính, Thanh Xuân,Nhân Chính,Thanh Xuân,Cheques,50,Hỏa tốc
-32,Vương Sỹ Việt,Nguyễn Anh Quân,334 Nguyễn Trãi, Thanh Xuân Trung, Thanh Xuân,Thanh Xuân Trung,Thanh Xuân,Honda Vision new version 2023,74,Giao hàng thường
-33,Phan Văn Thành,Đặng Đức Lộc,35 Đường Nguyễn Xiển, Hạ Đình, Thanh Xuân,Hạ Đình,Thanh Xuân,Billiards cue,3.7,Hỏa tốc
-34,Đỗ Thị Huyền,Ngô Khánh Hưng,164 Khuất Duy Tiến, Nhân Chính, Thanh Xuân,Nhân Chính,Thanh Xuân,Kệ sách,4,Hỏa tốc
-35,Trần Xuân Tài,Nguyễn Hoàng Nam,173C Đường Trường Chinh, Khương Mai, Thanh Xuân,Khương Mai,Thanh Xuân,Ticket,9.9,Giao hàng thường
-36,Phan Minh Hiếu,Hoàng Anh Tuấn,647 Phố Vũ Tông Phan, Khương Đình, Thanh Xuân,Khương Đình,Thanh Xuân,Nail box,0.5,Giao hàng thường
-37,Vũ Phương Anh,Cao Xuân Lâm,72A Đường Nguyễn Trãi, Thượng Đình, Thanh Xuân,Thượng Đình,Thanh Xuân,Contract,1.3,Hỏa tốc
-38,Vũ Huy Hoàng An,Đào Thúy Hằng,182 Lương Thế Vinh, Thanh Xuân Bắc, Thanh Xuân,Thanh Xuân Bắc,Thanh Xuân,Oppo Find N2,1.8,Giao hàng thường
-39,Nguyễn Thị Trinh,Phan Thu Huyền,437 Giải Phóng, Phương Liệt, Thanh Xuân,Phương Liệt,Thanh Xuân,Audi RS Q8,2170,Giao hàng thường
-40,Vũ Đăng Quang,Nguyễn Như Khánh,264 Phố Hoàng Văn Thái, Khương Trung, Thanh Xuân,Khương Trung,Thanh Xuân,1 set sườn,3,Giao hàng thường
-41,Đỗ Thành Danh,Đặng Khánh Hưng,129 Phố Nhật Chiêu, Nhật Tân, Tây Hồ,Nhật Tân,Tây Hồ,Set buffet nướng chay,6.1,Hỏa tốc
-42,Vũ Minh Nguyệt,Đặng Trà My,54C Ngõ 12 Đặng Thai Mai, Quảng An, Tây Hồ,Quảng An,Tây Hồ,Beef steak 70%,3.5,Giao hàng thường
-43,Nguyễn Thị Ngọc,Nguyễn Kim Ngân,51/12 Ngõ Ao Nghè, Quảng An, Tây Hồ,Quảng An,Tây Hồ,Board,8,Giao hàng thường
-44,Mai Thị Thúy,Phan Linh Chi,151 Phố Trích Sài, Bưởi, Tây Hồ,Bưởi,Tây Hồ,Đen đá không đường,1.4,Giao hàng thường
-45,Trần Văn Hiếu,Bùi Ngọc Anh,24 Ngõ 72 An Dương, Yên Phụ, Tây Hồ,Yên Phụ,Tây Hồ,Madza 6 Skyactive,1900,Hỏa tốc
-46,Đàm Duy Phú,Nguyễn Thu Hường,595 Nguyễn Hoàng, Xuân La, Tây Hồ,Xuân La,Tây Hồ,Basketball,8.4,Giao hàng thường
-47,Nguyễn Thị Hòa,Đặng Thùy Dương,130 Đường Nguyễn Hoàng Tôn, Xuân La, Tây Hồ,Xuân La,Tây Hồ,Medical Equipment,7.5,Hỏa tốc
-48,Trần Quang Huy,Phan Đình Hải,Ngõ 39 Phố Tứ Liên, Tứ Liên, Tây Hồ,Tứ Liên,Tây Hồ,Fish,10,Giao hàng thường
-49,Phạm Hoàng Vân,Nguyễn Thị Thu Huệ,69B Đường Thụy Khê, Thụy Khê, Tây Hồ,Thuỵ Khê,Tây Hồ,Suitcase,20,Giao hàng thường
-50,Đỗ Ngân Hà,Vũ Trọng Quang,Ngõ 264 Âu Cơ, Nhật Tân, Tây Hồ,Nhật Tân,Tây Hồ,Stone - Rock - Ice,54,Giao hàng thường
+1,Nguyễn Vân Anh,Nguyễn Thị Bình,123 Phố Nguyễn Thái Học,Văn Miếu,Đống Đa,Quần áo,10,Hỏa tốc
+2,Trần Bảo Quốc,Nguyễn Thái Bảo,12 Phố Ngô Sỹ Liên,Văn Miếu,Đống Đa,Đồ điện tử,5,Giao hàng thường
+3,Lê Văn Binh,Nguyễn Ngọc Dương,36 Phố Nguyễn Khuyến,Văn Miếu,Đống Đa,Đồ gia dụng,9,Hỏa tốc
+4,Lê Mạnh Cương,Trần Khánh Dũng,133 Phố Thái Hà,Trung Liệt,Đống Đa,Samsung Z Fold 5 ,0.2,Hỏa tốc
+5,Bùi Ngọc Khánh,Phạm Văn Toàn,5 Ngõ 178 Thái Hà,Trung Liệt,Đống Đa,Laptop Lenovo Idea Think Pad 5 Pro,2.1,Hỏa tốc
+6,Nguyễn Văn Linh,Đỗ Bách Khoa,Ngõ 100 Phố Yên Lãng,Thịnh Quang,Đống Đa,Thực phẩm,8,Giao hàng thường
+7,Nguyễn Thị Hương,Nguyễn Hương Giang,88 Phố Láng Hạ,Láng Hạ,Đống Đa,Rayban Camera Glasses,1,Giao hàng thường
+8,Lê Thị Giang,Trần Quốc Bảo,77 Đường Nguyễn Chí Thanh,Láng Thượng,Đống Đa,Books,4,Giao hàng thường
+9,Vương Thành Trung,Nguyễn Hữu Chiến,131 Phố Tôn Đức Thắng,Thổ Quan,Đống Đa,Frank Fruits,7.6,Giao hàng thường
+10,Trần Văn Doanh,Đỗ Khởi Nghiệp,25,Trung Phụng,Đống Đa,Accessories,20,Giao hàng thường
+11,Huỳnh Anh Tuấn,Lê Thúy Hằng,28A Điện Biên Phủ,Điện Biên,Ba Đình,SH 150i,100,Hỏa tốc
+12,Đặng Quang Vinh,Ngô Đức Minh,5 Phố Phan Kế Bính,Kim Mã,Ba Đình,Austrlia Door,20.5,Giao hàng thường
+13,Dương Hoàng Yến,Hoàng Tuấn Kiệt,54 Phố Liễu Giai,Cống Vị,Ba Đình,Đồ nội thất,99,Hỏa tốc
+14,Hồ Quang Việt,Trần Thành Khải,6B Phố Láng Hạ,Thành Công,Ba Đình,Mirror Luxury,30.5,Hỏa tốc
+15,Nguyễn Thị Phượng,Lê Hữu Sơn,29 Phố Liễu Giai,Ngọc Khánh,Ba Đình,Huawei Smart Watch,5.4,Giao hàng thường
+16,Mai Thi Thu Trà,Trần Khánh Ly,1 Phố Ngọc Hà,Đội Cấn,Ba Đình,EnergyZ Super Power,27,Giao hàng thường
+17,Hà Ngọc Khánh,Phan Trung Nghĩa,345 Phố Đội Cấn,Liễu Giai,Ba Đình,Bricks,45.3,Giao hàng thường
+18,Trần Hoàng Anh,Vũ Đức Hoàng,30 Phố Kim Mã,Kim Mã,Ba Đình,Pet items,34,Giao hàng thường
+19,Phạm Linh Chi,Vương Thu Phương,32 Phó Đức Chính,Trúc Bạch,Ba Đình,Sun glasses,5.8,Giao hàng thường
+20,Nguyễn Thị Huyền Thư,Nguyễn Phú Trường,15 Phố Ngọc Khánh,Giảng Võ,Ba Đình,Certificate,1.9,Giao hàng thường
+21,Lê Thị Thu Thảo,Huỳnh Văn Đông,93 Hoàng Quốc Việt,Nghĩa Đô,Cầu Giấy,Samsung inverter,50,Hỏa tốc
+22,Bạch Vân Thanh,Hà Phương Uyên,81 Đường Trần Cung,Nghĩa Tân,Cầu Giấy,Vending Machine,98,Giao hàng thường
+23,Nguyễn Đức Nam,Phạm Trung Kiên,74 Phố Phạm Thận Duật,Mai Dịch,Cầu Giấy,Vegetable,6,Giao hàng thường
+24,Phạm Hồng Thu,Trần Minh Huyền,1 Ngõ 10 Đường Nguyễn Văn Huyên,Dịch Vọng,Cầu Giấy,Thực phẩm sạch,17.9,Giao hàng thường
+25,Mai Thúy Hồng,Đỗ Xuân Phúc,29 Ngõ 2 Trần Kim Xuyến,Yên Hoà,Cầu Giấy,Set Buffet chay,3,Hỏa tốc
+26,Dương Thu Trang,Hoàng Xuân Tráng,18 Ngõ 34 Nguyễn Thị Định,Trung Hoà,Cầu Giấy,Drink & Coffee,4.2,Giao hàng thường
+27,Bùi Thị Lan,Nguyễn Ánh Dương,34 Phố Duy Tân,Dịch Vọng Hậu,Cầu Giấy,Stomach tube,24,Hỏa tốc
+28,Nguyễn Diệu Linh,Phan Xuân Long,6 Đường Nguyễn Khánh Toàn,Quan Hoa,Cầu Giấy,Voucher spa,0.8,Hỏa tốc
+29,Đặng Như Thành,Hồ Phú Lộc,24 Ngõ 52 Quan Nhân,Trung Hoà,Cầu Giấy,Set lẩu chay,3,Giao hàng thường
+30,Lê Đình Hoàng,Nguyễn Xuân Thành,95 Phố Trần Thái Tông,Dịch Vọng,Cầu Giấy,Insurance,2.8,Giao hàng thường
+31,Ngô Hải Yến,Nguyễn Yến Phương,52 Ngõ 12 phố Chính Kinh,Nhân Chính,Thanh Xuân,Cheques,50,Hỏa tốc
+32,Vương Sỹ Việt,Nguyễn Anh Quân,334 Nguyễn Trãi,Thanh Xuân Trung,Thanh Xuân,Honda Vision new version 2023,74,Giao hàng thường
+33,Phan Văn Thành,Đặng Đức Lộc,35 Đường Nguyễn Xiển,Hạ Đình,Thanh Xuân,Billiards cue,3.7,Hỏa tốc
+34,Đỗ Thị Huyền,Ngô Khánh Hưng,164 Khuất Duy Tiến,Nhân Chính,Thanh Xuân,Kệ sách,4,Hỏa tốc
+35,Trần Xuân Tài,Nguyễn Hoàng Nam,173C Đường Trường Chinh,Khương Mai,Thanh Xuân,Ticket,9.9,Giao hàng thường
+36,Phan Minh Hiếu,Hoàng Anh Tuấn,647 Phố Vũ Tông Phan,Khương Đình,Thanh Xuân,Nail box,0.5,Giao hàng thường
+37,Vũ Phương Anh,Cao Xuân Lâm,72A Đường Nguyễn Trãi,Thượng Đình,Thanh Xuân,Contract,1.3,Hỏa tốc
+38,Vũ Huy Hoàng An,Đào Thúy Hằng,182 Lương Thế Vinh,Thanh Xuân Bắc,Thanh Xuân,Oppo Find N2,1.8,Giao hàng thường
+39,Nguyễn Thị Trinh,Phan Thu Huyền,437 Giải Phóng,Phương Liệt,Thanh Xuân,Audi RS Q8,2170,Giao hàng thường
+40,Vũ Đăng Quang,Nguyễn Như Khánh,264 Phố Hoàng Văn Thái,Khương Trung,Thanh Xuân,1 set sườn,3,Giao hàng thường
+41,Đỗ Thành Danh,Đặng Khánh Hưng,129 Phố Nhật Chiêu,Nhật Tân,Tây Hồ,Set buffet nướng chay,6.1,Hỏa tốc
+42,Vũ Minh Nguyệt,Đặng Trà My,54C Ngõ 12 Đặng Thai Mai,Quảng An,Tây Hồ,Beef steak 70%,3.5,Giao hàng thường
+43,Nguyễn Thị Ngọc,Nguyễn Kim Ngân,51/12 Ngõ Ao Nghè,Quảng An,Tây Hồ,Board,8,Giao hàng thường
+44,Mai Thị Thúy,Phan Linh Chi,151 Phố Trích Sài,Bưởi,Tây Hồ,Đen đá không đường,1.4,Giao hàng thường
+45,Trần Văn Hiếu,Bùi Ngọc Anh,24 Ngõ 72 An Dương,Yên Phụ,Tây Hồ,Madza 6 Skyactive,1900,Hỏa tốc
+46,Đàm Duy Phú,Nguyễn Thu Hường,595 Nguyễn Hoàng,Xuân La,Tây Hồ,Basketball,8.4,Giao hàng thường
+47,Nguyễn Thị Hòa,Đặng Thùy Dương,130 Đường Nguyễn Hoàng Tôn,Xuân La,Tây Hồ,Medical Equipment,7.5,Hỏa tốc
+48,Trần Quang Huy,Phan Đình Hải,Ngõ 39 Phố Tứ Liên,Tứ Liên,Tây Hồ,Fish,10,Giao hàng thường
+49,Phạm Hoàng Vân,Nguyễn Thị Thu Huệ,69B Đường Thụy Khê,Thuỵ Khê,Tây Hồ,Suitcase,20,Giao hàng thường
+50,Đỗ Ngân Hà,Vũ Trọng Quang,Ngõ 264 Âu Cơ,Nhật Tân,Tây Hồ,Stone - Rock - Ice,54,Giao hàng thường
