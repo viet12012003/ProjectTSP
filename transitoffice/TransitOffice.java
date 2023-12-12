@@ -92,7 +92,7 @@ public class TransitOffice {
             // Thực hiện hành động dựa trên quận được chọn
             Office district = districtMap.get(selectedDistrict);
             district.getShipper().show(tableShip, modelShip);
-            transitDistrict(district, table, model, finalFrame, tableShip, modelShip);
+            transitDistrict(district, table, model, finalFrame, tableShip, modelShip,districtComboBox);
         });
 
         frame.setVisible(true);
@@ -100,10 +100,10 @@ public class TransitOffice {
     }
 
     // Các thao tác sẽ thực hiện khi chọn Quận
-    public void transitDistrict(Office district, JTable table, DefaultTableModel model, JFrame frame, JTable table2, DefaultTableModel model2) {
+    public void transitDistrict(Office district, JTable table, DefaultTableModel model, JFrame frame, JTable table2, DefaultTableModel model2,JComboBox<String>districtComboBox) {
         // Hiển thị các đơn hàng có trong queue của các quận
         showDeliveryDetails(district, table, model);
-
+        System.out.println("Selected District: " + district);
         JButton shipperSelectButton = new JButton("Shipper lấy hàng (5 đơn 1 lượt)");
         shipperSelectButton.setBounds(330, 400, 400, 30);
         frame.add(shipperSelectButton);
@@ -125,29 +125,29 @@ public class TransitOffice {
             SwingWorker<Void, Void> worker = new SwingWorker<>() {
                 @Override
                 protected Void doInBackground() throws Exception {
-
+                    Office newDistrict = districtMap.get(districtComboBox.getSelectedItem().toString());
+                    newDistrict.getShipper().show(table2, model2);
                     // Các công việc xử lý dữ liệu, phân loại, và hiển thị dữ liệu ở đây
                     // Nếu shipper của quận đó đang có đơn hàng trong queue chưa giao hết thì không được lấy thêm gói hàng mới
-                    if (!district.getShipper().getQueue().isEmpty()) {
-                        district.getShipper().show(table2, model2);
-                        showDeliveryDetails(district, table, model);
+                    if (!newDistrict.getShipper().getQueue().isEmpty()) {
+                        newDistrict.getShipper().show(table2, model2);
+                        showDeliveryDetails(newDistrict, table, model);
                         // Hiển thị thông báo shipper không thể lấy thêm hàng
                         JOptionPane.showMessageDialog(frame, "Shipper chưa hoàn thành các đơn hàng nên chưa thể nhận đơn mới!");
-                    } else if (district.getPackageQueue().isEmpty()){
+                    } else if (newDistrict.getPackageQueue().isEmpty()){
                         // Không còn đơn hàng nào ở bưu cục thì không thể nhận đơn hàng mới
                         // Hiển thị thông báo shipper không thể lấy thêm hàng
                         JOptionPane.showMessageDialog(frame, "Hiện tại chưa có đơn nào cần được giao cả");
                     } else {
                         // Shipper sẽ lấy hàng ở quận để mang đi ship
                         // Shipper sẽ được tính toán để đưa ra lộ trình tối ưu nhất
-                        district.getShipper().getPackages();
-                        district.getShipper().show(table2, model2);
+                        newDistrict.getShipper().getPackages();
+                        newDistrict.getShipper().show(table2, model2);
                         // Show các đơn hàng còn lại sau khi shipper đã lấy đi mất 1 số
-                        showDeliveryDetails(district, table, model);
+                        showDeliveryDetails(newDistrict, table, model);
                     }
                     return null;
                 }
-
                 @Override
                 protected void done() {
                     processingFrame.dispose(); // Sau khi công việc đã xong, đóng frame hiển thị thông báo
@@ -161,15 +161,16 @@ public class TransitOffice {
                     // Nếu không có đơn hàng nào trong queue sẽ hiển thị thông báo
                     JFrame finalFrame1 = frame;
                     shipButton.addActionListener(k -> {
-                        if (district.getShipper().getQueue().isEmpty()) {
+                        Office newDistrict3 = districtMap.get(districtComboBox.getSelectedItem().toString());
+                        if (newDistrict3.getShipper().getQueue().isEmpty()) {
                             JOptionPane.showMessageDialog(finalFrame1, "Không có đơn hàng nào cần hoàn thành cả, hãy nhận đơn mới nhé!");
                         } else {
                             // Hiển thị hộp thoại xác nhận
-                            int choice = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn hoàn thành đơn hàng "+district.getShipper().getQueue().peek()+"?", "Xác nhận hoàn thành", JOptionPane.YES_NO_OPTION);
+                            int choice = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn hoàn thành đơn hàng "+newDistrict3.getShipper().getQueue().peek()+"?", "Xác nhận hoàn thành", JOptionPane.YES_NO_OPTION);
                             if (choice == JOptionPane.YES_OPTION) {
                                 // Thực hiện các lệnh sau khi xác nhận
-                                district.getShipper().ship(finalFrame1);
-                                district.getShipper().show(table2, model2);
+                                newDistrict3.getShipper().ship(finalFrame1);
+                                newDistrict3.getShipper().show(table2, model2);
                             } else {
                                 // Đóng thông báo và không làm gì
                             }

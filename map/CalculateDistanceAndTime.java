@@ -46,7 +46,7 @@ public class CalculateDistanceAndTime {
 
             HttpRequest request1 = HttpRequest.newBuilder()
                     .uri(URI.create("https://trueway-matrix.p.rapidapi.com/CalculateDrivingMatrix?origins=" + location1[0] + "%2C" + location1[1] + "&destinations=" + location2[0] + "%2C" + location2[1]))
-                    .header("X-RapidAPI-Key", "f99ff80a8amshbf4b50882c5ad4ep1061b4jsn8c3ae7fea36c")
+                    .header("X-RapidAPI-Key", "08012a8e0fmshf9eeaeb03ca58aep19fd10jsn9c668f687973")
                     .header("X-RapidAPI-Host", "trueway-matrix.p.rapidapi.com")
                     .method("GET", HttpRequest.BodyPublishers.noBody())
                     .build();
