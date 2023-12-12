@@ -24,10 +24,11 @@ public class TransitOffice {
         frame.dispose();
         frame = new JFrame();
         frame.setTitle("Xem lộ trình giao hàng");
-        frame.setBounds(300, 25, 1100, 1000);
+        frame.setBounds(300, 25, 1100, 830);
         frame.setBackground(Color.WHITE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
+        frame.setResizable(false);
 
 
         // Tạo combobox chứa các quận
@@ -84,6 +85,7 @@ public class TransitOffice {
         centerRendererShip.setHorizontalAlignment(JLabel.CENTER);
         tableShip.setDefaultRenderer(Object.class, centerRendererShip);
 
+
         JFrame finalFrame = frame;
         selectButton.addActionListener(e -> {
             String selectedDistrict = districtComboBox.getSelectedItem().toString();
@@ -91,7 +93,6 @@ public class TransitOffice {
             Office district = districtMap.get(selectedDistrict);
             district.getShipper().show(tableShip, modelShip);
             transitDistrict(district, table, model, finalFrame, tableShip, modelShip);
-
         });
 
         frame.setVisible(true);
@@ -130,9 +131,12 @@ public class TransitOffice {
                     if (!district.getShipper().getQueue().isEmpty()) {
                         district.getShipper().show(table2, model2);
                         showDeliveryDetails(district, table, model);
-
-                        // Hiển thị thông báo shipper không thể lâấy thêm hàng
+                        // Hiển thị thông báo shipper không thể lấy thêm hàng
                         JOptionPane.showMessageDialog(frame, "Shipper chưa hoàn thành các đơn hàng nên chưa thể nhận đơn mới!");
+                    } else if (district.getPackageQueue().isEmpty()){
+                        // Không còn đơn hàng nào ở bưu cục thì không thể nhận đơn hàng mới
+                        // Hiển thị thông báo shipper không thể lấy thêm hàng
+                        JOptionPane.showMessageDialog(frame, "Hiện tại chưa có đơn nào cần được giao cả");
                     } else {
                         // Shipper sẽ lấy hàng ở quận để mang đi ship
                         // Shipper sẽ được tính toán để đưa ra lộ trình tối ưu nhất
@@ -150,8 +154,8 @@ public class TransitOffice {
                     // Tiếp tục với các hành động sau khi công việc kết thúc (nếu cần)
 
                     // Thêm nút giao hàng và nút xác nhận cho shipper
-                    JButton shipButton = new JButton("Giao đơn");
-                    shipButton.setBounds(20, 800, 100, 30);
+                    JButton shipButton = new JButton("Giao hàng");
+                    shipButton.setBounds(450, 750, 100, 30);
                     frame.add(shipButton);
                     // Sau khi nhấn nút Giao đơn, sẽ có thông báo bạn có chắc chắn đã hoàn thành giao đơn hàng [...]
                     // Nếu không có đơn hàng nào trong queue sẽ hiển thị thông báo
@@ -160,19 +164,15 @@ public class TransitOffice {
                         if (district.getShipper().getQueue().isEmpty()) {
                             JOptionPane.showMessageDialog(finalFrame1, "Không có đơn hàng nào cần hoàn thành cả, hãy nhận đơn mới nhé!");
                         } else {
-                            JLabel text = new JLabel("Bạn xác nhận hoàn thành đơn hàng: " + district.getShipper().getQueue().peek());
-                            text.setBounds(20, 900, 700, 30);
-                            finalFrame1.add(text);
-
-                            // Thêm nút xác nhận
-                            JButton confirmButton = new JButton("Xác nhận hoàn thành");
-                            confirmButton.setBounds(420, 800, 100, 30);
-                            finalFrame1.add(confirmButton);
-
-                            confirmButton.addActionListener(j -> {
+                            // Hiển thị hộp thoại xác nhận
+                            int choice = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn hoàn thành đơn hàng "+district.getShipper().getQueue().peek()+"?", "Xác nhận hoàn thành", JOptionPane.YES_NO_OPTION);
+                            if (choice == JOptionPane.YES_OPTION) {
+                                // Thực hiện các lệnh sau khi xác nhận
                                 district.getShipper().ship(finalFrame1);
                                 district.getShipper().show(table2, model2);
-                            });
+                            } else {
+                                // Đóng thông báo và không làm gì
+                            }
                         }
                     });
                     frame.revalidate(); // Cập nhật giao diện
