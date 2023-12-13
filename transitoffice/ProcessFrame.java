@@ -7,8 +7,13 @@ package transitoffice;
 import receive.PackageQueueManager;
 import sender_information.Packages;
 
-import javax.swing.table.DefaultTableModel;
+import java.awt.Font;
 import java.util.PriorityQueue;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -25,6 +30,11 @@ public class ProcessFrame extends javax.swing.JFrame {
         initComponents();
         displayInfor();
         this.setLocationRelativeTo(null);
+        // Đặt kiểu căn giữa cho ô trong JTable
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        table.setDefaultRenderer(Object.class, centerRenderer);
+        settingTableHeading();
         this.setVisible(true);
     }
 
@@ -50,7 +60,7 @@ public class ProcessFrame extends javax.swing.JFrame {
         title.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         title.setText("THÔNG TIN CÁC ĐƠN HÀNG TẠI BƯU CỤC HÀ NỘI");
 
-        table.setModel(new DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
 
                 },
@@ -59,7 +69,7 @@ public class ProcessFrame extends javax.swing.JFrame {
                 }
         ) {
             Class[] types = new Class [] {
-                    String.class, String.class, String.class, String.class, String.class, String.class, String.class
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                     false, false, false, false, false, false, false
@@ -73,6 +83,8 @@ public class ProcessFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        table.setGridColor(new java.awt.Color(0, 0, 0));
+        table.setSelectionBackground(new java.awt.Color(51, 102, 255));
         table.getTableHeader().setReorderingAllowed(false);
         inforTable.setViewportView(table);
         if (table.getColumnModel().getColumnCount() > 0) {
@@ -84,6 +96,7 @@ public class ProcessFrame extends javax.swing.JFrame {
 
         transitButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         transitButton.setText("Vận chuyển các đơn hàng về bưu cục quận");
+        transitButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         transitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 transitButtonActionPerformed(evt);
@@ -139,41 +152,27 @@ public class ProcessFrame extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProcessFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProcessFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProcessFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProcessFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void settingTableHeading(){
+        // Lấy JTableHeader của bảng
+        JTableHeader header = table.getTableHeader();
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ProcessFrame(packageQueueManager).setVisible(true);
-            }
-        });
+        // Tạo một Font mới
+        Font headerFont = new Font("Times New Roman", Font.BOLD, 12); // Thay đổi font tại đây
+
+        // Đặt font cho tiêu đề cột
+        header.setFont(headerFont);
+
+        // Tạo một TableCellRenderer tùy chỉnh để căn giữa tiêu đề cột
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER); // Căn giữa
+
+        // Đặt renderer cho tất cả các cột trong JTableHeader
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            table.getColumnModel().getColumn(i).setHeaderRenderer(centerRenderer);
+        }
     }
+
+
 
 
     // Variables declaration - do not modify

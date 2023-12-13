@@ -9,7 +9,10 @@ import sender_information.Packages;
 import shipper.Shipper;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import java.awt.*;
 import java.util.*;
 
 /**
@@ -26,6 +29,8 @@ public class TransitFrame extends JFrame {
         this.packages = packages;
         districtMap = classifyPackages();
         initComponents();
+        // Đặt kiểu căn giữa cho ô trong JTable
+        settingTable();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
@@ -449,5 +454,41 @@ public class TransitFrame extends JFrame {
             ((DefaultTableModel) shipTable.getModel()).addRow(new Object[]{pack.getId(), pack.getSender(), pack.getReceiver(), pack.getAddress(), pack.getGoods(), pack.getPhonenumber(), pack.getService()});
         }
     }
+
+    private void settingTable(){
+        // Lấy JTableHeader của bảng
+        JTableHeader header = districtTable.getTableHeader();
+
+        // Tạo một Font mới
+        Font headerFont = new Font("Times New Roman", Font.BOLD, 12); // Thay đổi font tại đây
+
+        // Đặt font cho tiêu đề cột
+        header.setFont(headerFont);
+
+        // Tạo một TableCellRenderer tùy chỉnh để căn giữa tiêu đề cột
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER); // Căn giữa
+
+        // Đặt renderer cho tất cả các cột trong JTableHeader
+        for (int i = 0; i < districtTable.getColumnCount(); i++) {
+            districtTable.getColumnModel().getColumn(i).setHeaderRenderer(centerRenderer);
+        }
+
+        // Lấy JTableHeader của bảng
+        JTableHeader header1 = shipTable.getTableHeader();
+
+        // Đặt font cho tiêu đề cột
+        header.setFont(headerFont);
+
+        // Đặt renderer cho tất cả các cột trong JTableHeader
+        for (int i = 0; i < shipTable.getColumnCount(); i++) {
+            shipTable.getColumnModel().getColumn(i).setHeaderRenderer(centerRenderer);
+        }
+
+        shipTable.setDefaultRenderer(Object.class, centerRenderer);
+        districtTable.setDefaultRenderer(Object.class, centerRenderer);
+
+    }
+
 
 }

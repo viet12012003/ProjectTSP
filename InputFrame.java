@@ -2,17 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 import receive.PackageQueueManager;
 import transitoffice.ProcessFrame;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import java.awt.Font;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -51,7 +55,12 @@ public class InputFrame extends javax.swing.JFrame {
      */
     public InputFrame() {
 //        setfileName();
+        // Đặt kiểu căn giữa cho ô trong JTable
         initComponents();
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        inforTable.setDefaultRenderer(Object.class, centerRenderer);
+        settingTableHeading();
     }
 
     /**
@@ -111,57 +120,29 @@ public class InputFrame extends javax.swing.JFrame {
 
         serviceLabel.setText("Dịch vụ");
 
-        senderText.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                senderTextFocusLost(evt);
-            }
-        });
         senderText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 senderTextActionPerformed(evt);
             }
         });
 
-        receiverText.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                receiverTextFocusLost(evt);
-            }
-        });
-
-        addressText.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                addressTextFocusLost(evt);
-            }
-        });
-
-        goodsText.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                goodsTextFocusLost(evt);
-            }
-        });
         goodsText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 goodsTextActionPerformed(evt);
             }
         });
 
-        phoneNumberText.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                phoneNumberTextFocusLost(evt);
-            }
-        });
-
         inforTable.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        inforTable.setModel(new DefaultTableModel(
+        inforTable.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
 
                 },
                 new String [] {
-                        "Mã đơn ", "Người gửi", "Người nhận", "Địa chỉ", "Phường", "Quận", "Tên hàng hoá", "Khối lượng"
+                        "Mã đơn ", "Người gửi", "Người nhận", "Địa chỉ", "Phường", "Quận", "Tên hàng hoá", "SĐT"
                 }
         ) {
             Class[] types = new Class [] {
-                    String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                     false, false, false, false, false, false, false, false
@@ -176,15 +157,16 @@ public class InputFrame extends javax.swing.JFrame {
             }
         });
         inforTable.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        inforTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(inforTable);
         if (inforTable.getColumnModel().getColumnCount() > 0) {
             inforTable.getColumnModel().getColumn(0).setPreferredWidth(50);
             inforTable.getColumnModel().getColumn(1).setPreferredWidth(110);
             inforTable.getColumnModel().getColumn(2).setPreferredWidth(110);
-            inforTable.getColumnModel().getColumn(3).setPreferredWidth(320);
+            inforTable.getColumnModel().getColumn(3).setPreferredWidth(180);
+            inforTable.getColumnModel().getColumn(7).setPreferredWidth(100);
         }
 
-        confirm.setFont(new java.awt.Font("Bahnschrift", 0, 12)); // NOI18N
         confirm.setText("Xác nhận");
         confirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -223,7 +205,6 @@ public class InputFrame extends javax.swing.JFrame {
 
         serviceComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hoả tốc", "Giao hàng thường" }));
 
-        processButton.setFont(new java.awt.Font("Bahnschrift", 0, 12)); // NOI18N
         processButton.setText("Phân loại và sắp xếp");
         processButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,43 +216,6 @@ public class InputFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(296, 296, 296)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(senderLabel)
-                                                .addGap(38, 38, 38)
-                                                .addComponent(senderText, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                        .addComponent(receiverLabel)
-                                                        .addGap(29, 29, 29)
-                                                        .addComponent(receiverText, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(addressLable)
-                                                                .addComponent(goodLable, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGap(18, 18, 18)
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(addressText)
-                                                                .addComponent(goodsText))))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(districtLable)
-                                                        .addComponent(serviceLabel)
-                                                        .addComponent(wardLable)
-                                                        .addComponent(phoneNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(districtComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(wardComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(serviceComboBox, 0, 252, Short.MAX_VALUE)
-                                                        .addComponent(phoneNumberText))))
-                                .addContainerGap(360, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane1)
-                                .addContainerGap())
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,6 +228,44 @@ public class InputFrame extends javax.swing.JFrame {
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addComponent(processButton)
                                                 .addGap(417, 417, 417))))
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(280, 280, 280)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(phoneNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(districtLable)
+                                                                        .addComponent(wardLable)
+                                                                        .addComponent(serviceLabel))
+                                                                .addGap(34, 34, 34)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                        .addComponent(districtComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addComponent(wardComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addComponent(serviceComboBox, 0, 252, Short.MAX_VALUE)
+                                                                        .addComponent(phoneNumberText)))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(receiverLabel)
+                                                                .addGap(45, 45, 45)
+                                                                .addComponent(receiverText, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(addressLable)
+                                                                        .addComponent(goodLable, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                        .addComponent(goodsText, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                                                        .addComponent(addressText)))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(senderLabel)
+                                                                .addGap(54, 54, 54)
+                                                                .addComponent(senderText, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(0, 354, Short.MAX_VALUE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(jScrollPane1)))
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,9 +294,10 @@ public class InputFrame extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(phoneNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(phoneNumberLabel))
-                                                .addGap(15, 15, 15)
-                                                .addComponent(districtLable, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(districtComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(41, 41, 41))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(districtComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(districtLable, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(wardLable)
@@ -325,7 +308,7 @@ public class InputFrame extends javax.swing.JFrame {
                                         .addComponent(serviceComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(confirm)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(processButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -419,6 +402,20 @@ public class InputFrame extends javax.swing.JFrame {
         String phone = phoneNumberText.getText();
         String service = serviceComboBox.getSelectedItem().toString();
 
+        if (sender.length() == 0 || receiver.length() == 0 || receiverAddress.length() == 0 || goodsName.length() == 0 || phone.length() == 0 || wardsAddress.equals("None")){
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng không để trống thông tin!");
+            return;
+        }
+        if ( !isValidAddress(receiverAddress)){
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng không sử dụng dấu ',' trong mục địa chỉ nhận!");
+            addressText.setText("");
+            return;
+        }
+        if ( !isValidPhoneNumber(phone)){
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đúng định dạng số điện thoại!");
+            phoneNumberText.setText("");
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) inforTable.getModel();
 
         // Tạo một mảng chứa dữ liệu cho hàng mới
@@ -453,43 +450,42 @@ public class InputFrame extends javax.swing.JFrame {
         autoId++;
     }
 
-    private void senderTextFocusLost(java.awt.event.FocusEvent evt) {
-        // TODO add your handling code here:
-        String text = senderText.getText();
-        if ( text.length() <= 0 ){
-            JOptionPane.showMessageDialog(rootPane, "Không được để trống tên người gửi");
+    private boolean isValidAddress(String text){
+        for (int i = 0; i < text.length(); i++) {
+            if ( text.charAt(i) == ','){
+                return false;
+            }
+        }
+        return true;
+    }
+    private boolean isValidPhoneNumber(String text){
+        for (int i = 0; i < text.length(); i++) {
+            if ( text.charAt(i) < '0' || text.charAt(i) > '9'){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void settingTableHeading(){
+        // Lấy JTableHeader của bảng
+        JTableHeader header = inforTable.getTableHeader();
+
+        // Tạo một Font mới
+        Font headerFont = new Font("Times New Roman", Font.BOLD, 12); // Thay đổi font tại đây
+
+        // Đặt font cho tiêu đề cột
+        header.setFont(headerFont);
+
+        // Tạo một TableCellRenderer tùy chỉnh để căn giữa tiêu đề cột
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER); // Căn giữa
+
+        // Đặt renderer cho tất cả các cột trong JTableHeader
+        for (int i = 0; i < inforTable.getColumnCount(); i++) {
+            inforTable.getColumnModel().getColumn(i).setHeaderRenderer(centerRenderer);
         }
     }
-
-    private void receiverTextFocusLost(java.awt.event.FocusEvent evt) {
-        // TODO add your handling code here:
-        String text = receiverText.getText();
-        if ( text.length() <= 0 ){
-            JOptionPane.showMessageDialog(rootPane, "Không được để trống tên người nhận");
-        }
-    }
-
-    private void addressTextFocusLost(java.awt.event.FocusEvent evt) {
-        // TODO add your handling code here:
-        String text = addressText.getText();
-        if ( text.length() <= 0 ){
-            JOptionPane.showMessageDialog(rootPane, "Không được để trống địa chỉ nhận");
-        }
-    }
-
-    private void phoneNumberTextFocusLost(java.awt.event.FocusEvent evt) {
-        // TODO add your handling code here:
-        String text = phoneNumberText.getText();
-        if ( text.length() <= 0 ){
-            JOptionPane.showMessageDialog(rootPane, "Không được để trống số điện thoại");
-        }
-    }
-
-    private void goodsTextFocusLost(java.awt.event.FocusEvent evt) {
-        // TODO add your handling code here:
-    }
-
-
 
 
     /**
