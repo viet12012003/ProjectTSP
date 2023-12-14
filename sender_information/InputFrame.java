@@ -24,10 +24,12 @@ import java.util.HashMap;
 public class InputFrame extends javax.swing.JFrame {
     int autoId = 1;
     String filename = "data2.csv";
+
     public InputFrame() {
 //        setfileName();  // Đặt lại filename mới
         initComponents();  // Xây dựng giao diện và các hoạt động trong giao diện InputFrame
     }
+
     public void setfileName() {
         // Lấy ngày và giờ hiện tại
         Date currentDate = new Date();
@@ -47,6 +49,7 @@ public class InputFrame extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -299,11 +302,13 @@ public class InputFrame extends javax.swing.JFrame {
             }
         }
     }
+
     private void processButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        this.dispose();
         PackageQueueManager packageQueueManager = new PackageQueueManager(filename);
+        this.dispose();
         new ProcessFrame(packageQueueManager);
     }
+
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {
         String idGoods = Integer.toString(autoId);
         String sender = senderText.getText();
@@ -315,7 +320,8 @@ public class InputFrame extends javax.swing.JFrame {
         String phone = phoneNumberText.getText();
         String service = serviceComboBox.getSelectedItem().toString();
 
-        if (sender.length() == 0 || receiver.length() == 0 || receiverAddress.length() == 0 || goodsName.length() == 0 || phone.length() == 0 || wardsAddress.equals("None")) {
+        if (sender.length() == 0 || receiver.length() == 0 || receiverAddress.length() == 0 ||
+                goodsName.length() == 0 || phone.length() == 0 || wardsAddress.equals("None")) {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng không để trống thông tin!");
             return;
         }
@@ -330,18 +336,16 @@ public class InputFrame extends javax.swing.JFrame {
             return;
         }
         DefaultTableModel model = (DefaultTableModel) inforTable.getModel();
-
         // Tạo một mảng chứa dữ liệu cho hàng mới
         Object[] newRow = {idGoods, sender, receiver, receiverAddress, wardsAddress, districtAddress, goodsName, phone, service};
-
         // Thêm hàng mới vào table thông qua model
         model.addRow(newRow);
-
         // Ghi dữ liệu vào file CSV
         try {
             FileWriter writer = new FileWriter(filename, true);
             // Ghi thông tin theo định dạng CSV vào file
-            String line = idGoods + "," + sender + "," + receiver + "," + receiverAddress + "," + wardsAddress + "," + districtAddress + "," + goodsName + "," + phone + "," + service;
+            String line = idGoods + "," + sender + "," + receiver + "," + receiverAddress + "," + wardsAddress + "," + districtAddress
+                    + "," + goodsName + "," + phone + "," + service;
             writer.write(line);
             writer.write(System.lineSeparator()); // Xuống dòng cho dữ liệu mới
             writer.close();

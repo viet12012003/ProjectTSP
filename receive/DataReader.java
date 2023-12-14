@@ -10,11 +10,9 @@ import java.util.PriorityQueue;
 
 public class DataReader {
     private String fileName;
-
     public DataReader(String fileName) {
         this.fileName = fileName;
     }
-
     public PriorityQueue<Packages> readPackagesFromFile() {
         // packageQueue ưu tiên Hỏa Tốc trước Thường, nếu cùng loại thì ưu tiên theo ID
         PriorityQueue<Packages> packageQueue = new PriorityQueue<>(Comparator
@@ -41,7 +39,6 @@ public class DataReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return packageQueue;
     }
 }

@@ -6,7 +6,6 @@ package transitoffice;
 
 import receive.PackageQueueManager;
 import sender_information.Packages;
-import transitoffice.TransitFrame;
 
 import java.awt.Font;
 import java.util.PriorityQueue;
@@ -21,26 +20,15 @@ import javax.swing.table.JTableHeader;
  * @author HAI YEN
  */
 public class ProcessFrame extends javax.swing.JFrame {
-    public static PackageQueueManager packageQueueManager;
-
+    public PackageQueueManager packageQueueManager;
     /**
      * Creates new form TransitFrame
      */
     public ProcessFrame(PackageQueueManager packageQueueManager) {
         this.packageQueueManager = packageQueueManager;
         initComponents();
-        displayInfor();
-        this.setLocationRelativeTo(null);
-        // Đặt kiểu căn giữa cho ô trong JTable
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        table.setDefaultRenderer(Object.class, centerRenderer);
-        settingTableHeading();
-        this.setVisible(true);
+
     }
-
-
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -131,14 +119,15 @@ public class ProcessFrame extends javax.swing.JFrame {
                                 .addComponent(transitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 44, Short.MAX_VALUE))
         );
-
+        this.setLocationRelativeTo(null);
+        settingTable();
         pack();
+        displayInfor();
     }// </editor-fold>
 
     private void transitButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         this.dispose();
-        TransitFrame transitFrame = new TransitFrame(packageQueueManager.getPackageQueue());
+        new TransitFrame(packageQueueManager.getPackageQueue());
     }
 
     public void displayInfor(){
@@ -152,7 +141,7 @@ public class ProcessFrame extends javax.swing.JFrame {
         }
     }
 
-    private void settingTableHeading(){
+    private void settingTable(){
         // Lấy JTableHeader của bảng
         JTableHeader header = table.getTableHeader();
 
@@ -166,6 +155,7 @@ public class ProcessFrame extends javax.swing.JFrame {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER); // Căn giữa
 
+        table.setDefaultRenderer(Object.class, centerRenderer);
         // Đặt renderer cho tất cả các cột trong JTableHeader
         for (int i = 0; i < table.getColumnCount(); i++) {
             table.getColumnModel().getColumn(i).setHeaderRenderer(centerRenderer);
