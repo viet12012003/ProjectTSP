@@ -25,21 +25,18 @@ public class InputFrame extends javax.swing.JFrame {
     int autoId = 1;
     String filename = "data2.csv";
     public InputFrame() {
-//        setfileName();
-        initComponents();
+//        setfileName();  // Đặt lại filename mới
+        initComponents();  // Xây dựng giao diện và các hoạt động trong giao diện InputFrame
     }
     public void setfileName() {
         // Lấy ngày và giờ hiện tại
         Date currentDate = new Date();
-
         // Định dạng ngày và giờ thành chuỗi không có khoảng trắng
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String formattedDateTime = dateFormat.format(currentDate);
-
         // Tạo tên file với ngày và giờ không có khoảng trắng và định dạng là CSV để lưu trữ thông tin mỗi lần chạy chương trình
         String fileName = formattedDateTime + "_data.csv";
         this.filename = fileName;
-
         try {
             FileWriter writer = new FileWriter(fileName, true);
             //  đặt tên cho các cột
@@ -58,7 +55,6 @@ public class InputFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
-
         titleLabel = new javax.swing.JLabel();
         senderLabel = new javax.swing.JLabel();
         receiverLabel = new javax.swing.JLabel();
@@ -303,13 +299,11 @@ public class InputFrame extends javax.swing.JFrame {
             }
         }
     }
-
     private void processButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
         PackageQueueManager packageQueueManager = new PackageQueueManager(filename);
         new ProcessFrame(packageQueueManager);
     }
-
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {
         String idGoods = Integer.toString(autoId);
         String sender = senderText.getText();
@@ -370,7 +364,6 @@ public class InputFrame extends javax.swing.JFrame {
     }
 
     private void districtComboBoxActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         // Tạo bản sao của danh sách phường theo từng quận
         HashMap<String, String[]> wardMap = new HashMap<>();
         wardMap.put("Ba Đình", new String[]{"Cống Vị", "Điện Biên", "Đội Cấn", "Giảng Võ", "Kim Mã", "Liễu Giai", "Ngọc Hà",
