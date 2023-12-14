@@ -63,19 +63,18 @@ public class Shipper {
         // map để lưu các index tương ứng với gói hàng nào (địa chỉ nào)
         Map<Integer, Packages> mapId = new HashMap<>();
         // Địa điểm xuất phát là vị trí bưu cục của các quận
-        mapId.put(0, district.getOFFICE_ADDRESS());
+        Packages districtAddress = new Packages(-1, null,null, district.getOFFICE_ADDRESS(), null,null,null);
+        mapId.put(0, districtAddress);
         // Lấy các gói hàng từ queue của ship và thêm vào map
         for (int i = 1; i < numOfPack + 1; i++) {
             mapId.put(i, queue.poll());
         }
         // Update các trọng số của đồ thị vào ma trận
         graph = buildGraph(mapId, graph);
-
         // Gọi đến hàm tính toán đường đi tối ưu
         SimulatedAnnealing simulatedAnnealing = new SimulatedAnnealing();
         // Lưu trữ lộ trình tối ưu trong 1 mảng
         int[] result = simulatedAnnealing.simulatedAnnealing(graph);
-
         // Lưu lại các gói hàng vào queue của shipper sau khi tối ưu
         for (int i = 1; i < result.length - 1; i++) {
             queue.add(mapId.get(result[i]));

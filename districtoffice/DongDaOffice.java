@@ -43,11 +43,6 @@ public class DongDaOffice implements Office {
         return shipper;
     }
 
-    @Override
-    public void setShipper(Shipper shipper) {
-        this.shipper = shipper;
-    }
-
     public Queue<Packages> getDongDaQueue() {
         return dongDaQueue;
     }
@@ -56,7 +51,7 @@ public class DongDaOffice implements Office {
         this.dongDaQueue = dongDaQueue;
     }
 
-    public Packages getOFFICE_ADDRESS() {
-        return new Packages(-1, null, null, OFFICE_ADDRESS, null, null, null);
+    public String getOFFICE_ADDRESS() {
+        return OFFICE_ADDRESS;
     }
 }

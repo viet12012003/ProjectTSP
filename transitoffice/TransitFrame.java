@@ -37,11 +37,6 @@ public class TransitFrame extends javax.swing.JFrame {
         this.packages = packages;
         districtMap = classifyPackages();
         initComponents();
-        // Đặt kiểu căn giữa cho ô trong JTable
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        shipTable.setDefaultRenderer(Object.class, centerRenderer);
-        districtTable.setDefaultRenderer(Object.class, centerRenderer);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
@@ -239,7 +234,7 @@ public class TransitFrame extends javax.swing.JFrame {
                                         .addComponent(sendPackageButton))
                                 .addContainerGap(45, Short.MAX_VALUE))
         );
-
+        settingTable();
         pack();
     }// </editor-fold>
 
@@ -326,24 +321,6 @@ public class TransitFrame extends javax.swing.JFrame {
             }
         }
     }
-
-
-
-
-    // Variables declaration - do not modify
-    private javax.swing.JComboBox<String> districtComboBox;
-    private javax.swing.JLabel districtLabel;
-    private javax.swing.JTable districtTable;
-    private javax.swing.JButton getPackageButton;
-    private javax.swing.JScrollPane inforTable;
-    private javax.swing.JScrollPane inforTable1;
-    private javax.swing.JButton sendPackageButton;
-    private javax.swing.JTable shipTable;
-    private javax.swing.JButton showButton;
-    private javax.swing.JLabel title;
-    private javax.swing.JLabel titleDistrictTable;
-    private javax.swing.JLabel titleShipperTable;
-    // End of variables declaration
 
 
     public void transitDistrict() {
@@ -449,7 +426,7 @@ public class TransitFrame extends javax.swing.JFrame {
         JTableHeader header1 = shipTable.getTableHeader();
 
         // Đặt font cho tiêu đề cột
-        header.setFont(headerFont);
+        header1.setFont(headerFont);
 
         // Đặt renderer cho tất cả các cột trong JTableHeader
         for (int i = 0; i < shipTable.getColumnCount(); i++) {
@@ -458,8 +435,29 @@ public class TransitFrame extends javax.swing.JFrame {
 
         shipTable.setDefaultRenderer(Object.class, centerRenderer);
         districtTable.setDefaultRenderer(Object.class, centerRenderer);
+        // Đặt kiểu căn giữa cho ô trong JTable
 
     }
+
+
+
+
+
+    // Variables declaration - do not modify
+    private javax.swing.JComboBox<String> districtComboBox;
+    private javax.swing.JLabel districtLabel;
+    private javax.swing.JTable districtTable;
+    private javax.swing.JButton getPackageButton;
+    private javax.swing.JScrollPane inforTable;
+    private javax.swing.JScrollPane inforTable1;
+    private javax.swing.JButton sendPackageButton;
+    private javax.swing.JTable shipTable;
+    private javax.swing.JButton showButton;
+    private javax.swing.JLabel title;
+    private javax.swing.JLabel titleDistrictTable;
+    private javax.swing.JLabel titleShipperTable;
+    // End of variables declaration
+
 
 
 }

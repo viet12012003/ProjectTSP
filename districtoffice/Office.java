@@ -12,10 +12,9 @@ public  interface Office {
      void printPackages();
      Queue<Packages> getPackageQueue();
 
-     Packages getOFFICE_ADDRESS();
+     String getOFFICE_ADDRESS();
 
      Shipper getShipper();
-     void setShipper(Shipper shipper);
 
 
 }

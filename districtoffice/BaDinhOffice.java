@@ -37,18 +37,13 @@ public class BaDinhOffice implements Office{
         }
     }
 
-    public Packages getOFFICE_ADDRESS() {
-        return new Packages(-1,null,null,OFFICE_ADDRESS,null,null,null);
+    public String getOFFICE_ADDRESS() {
+        return OFFICE_ADDRESS;
     }
 
     @Override
     public Shipper getShipper() {
         return shipper;
-    }
-
-    @Override
-    public void setShipper(Shipper shipper) {
-        this.shipper = shipper;
     }
 
 

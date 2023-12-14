@@ -9,7 +9,6 @@ import sender_information.Packages;
 
 import java.awt.Font;
 import java.util.PriorityQueue;
-import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -22,12 +21,13 @@ import javax.swing.table.JTableHeader;
 public class ProcessFrame extends javax.swing.JFrame {
     public PackageQueueManager packageQueueManager;
     /**
-     * Creates new form TransitFrame
+     * Creates new form ProcessFrame
      */
     public ProcessFrame(PackageQueueManager packageQueueManager) {
         this.packageQueueManager = packageQueueManager;
+        // Hàm xây dựng giao diện và các hành động trong giao diện ProcessFrame
         initComponents();
-
+        this.setLocationRelativeTo(null);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -119,10 +119,11 @@ public class ProcessFrame extends javax.swing.JFrame {
                                 .addComponent(transitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 44, Short.MAX_VALUE))
         );
-        this.setLocationRelativeTo(null);
+
         settingTable();
-        pack();
         displayInfor();
+        pack();
+        this.setVisible(true);
     }// </editor-fold>
 
     private void transitButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,7 +138,8 @@ public class ProcessFrame extends javax.swing.JFrame {
         while (!tempQueue.isEmpty()) {
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             Packages pack = tempQueue.poll();
-            model.addRow(new Object[]{pack.getId(), pack.getSender(), pack.getReceiver(), pack.getAddress(), pack.getGoods(), pack.getPhonenumber(), pack.getService()});
+            model.addRow(new Object[]{pack.getId(), pack.getSender(), pack.getReceiver(), pack.getAddress(), pack.getGoods(),
+                    pack.getPhonenumber(), pack.getService()});
         }
     }
 
@@ -161,10 +163,6 @@ public class ProcessFrame extends javax.swing.JFrame {
             table.getColumnModel().getColumn(i).setHeaderRenderer(centerRenderer);
         }
     }
-
-
-
-
     // Variables declaration - do not modify
     private javax.swing.JScrollPane inforTable;
     private javax.swing.JTable table;
