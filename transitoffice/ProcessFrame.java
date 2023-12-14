@@ -6,6 +6,7 @@ package transitoffice;
 
 import receive.PackageQueueManager;
 import sender_information.Packages;
+import transitoffice.TransitFrame;
 
 import java.awt.Font;
 import java.util.PriorityQueue;
@@ -84,7 +85,6 @@ public class ProcessFrame extends javax.swing.JFrame {
             }
         });
         table.setGridColor(new java.awt.Color(0, 0, 0));
-        table.setSelectionBackground(new java.awt.Color(51, 102, 255));
         table.getTableHeader().setReorderingAllowed(false);
         inforTable.setViewportView(table);
         if (table.getColumnModel().getColumnCount() > 0) {

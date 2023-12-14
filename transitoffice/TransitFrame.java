@@ -8,18 +8,27 @@ import districtoffice.*;
 import sender_information.Packages;
 import shipper.Shipper;
 
-import javax.swing.*;
+import java.awt.Font;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JProgressBar;
+import javax.swing.SwingConstants;
+import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import java.awt.*;
-import java.util.*;
 
 /**
  *
  * @author HAI YEN
  */
-public class TransitFrame extends JFrame {
+public class TransitFrame extends javax.swing.JFrame {
 
     private PriorityQueue<Packages> packages;
 
@@ -30,17 +39,14 @@ public class TransitFrame extends JFrame {
         districtMap = classifyPackages();
         initComponents();
         // Đặt kiểu căn giữa cho ô trong JTable
-        settingTable();
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        shipTable.setDefaultRenderer(Object.class, centerRenderer);
+        districtTable.setDefaultRenderer(Object.class, centerRenderer);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
-    /**
-     * Creates new form TransitFrame
-     */
-    public TransitFrame() {
-        initComponents();
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,20 +57,20 @@ public class TransitFrame extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        title = new JLabel();
-        districtLabel = new JLabel();
-        districtComboBox = new JComboBox<>();
-        inforTable = new JScrollPane();
-        shipTable = new JTable();
-        inforTable1 = new JScrollPane();
-        districtTable = new JTable();
-        titleDistrictTable = new JLabel();
-        showButton = new JButton();
-        titleShipperTable = new JLabel();
-        getPackageButton = new JButton();
-        sendPackageButton = new JButton();
+        title = new javax.swing.JLabel();
+        districtLabel = new javax.swing.JLabel();
+        districtComboBox = new javax.swing.JComboBox<>();
+        inforTable = new javax.swing.JScrollPane();
+        shipTable = new javax.swing.JTable();
+        inforTable1 = new javax.swing.JScrollPane();
+        districtTable = new javax.swing.JTable();
+        titleDistrictTable = new javax.swing.JLabel();
+        showButton = new javax.swing.JButton();
+        titleShipperTable = new javax.swing.JLabel();
+        getPackageButton = new javax.swing.JButton();
+        sendPackageButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("THEO DÕI ĐƠN HÀNG");
         setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         setResizable(false);
@@ -75,14 +81,9 @@ public class TransitFrame extends JFrame {
         districtLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         districtLabel.setText(" Quận :");
 
-        districtComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Ba Đình", "Đống Đa", "Cầu Giấy", "Thanh Xuân", "Tây Hồ" }));
-        districtComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                districtComboBoxActionPerformed(evt);
-            }
-        });
+        districtComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ba Đình", "Đống Đa", "Cầu Giấy", "Thanh Xuân", "Tây Hồ" }));
 
-        shipTable.setModel(new DefaultTableModel(
+        shipTable.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
 
                 },
@@ -91,7 +92,7 @@ public class TransitFrame extends JFrame {
                 }
         ) {
             Class[] types = new Class [] {
-                    String.class, String.class, String.class, String.class, String.class, String.class, String.class
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                     false, false, false, false, false, false, false
@@ -114,7 +115,8 @@ public class TransitFrame extends JFrame {
             shipTable.getColumnModel().getColumn(3).setPreferredWidth(320);
         }
 
-        districtTable.setModel(new DefaultTableModel(
+        districtTable.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        districtTable.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
 
                 },
@@ -123,7 +125,7 @@ public class TransitFrame extends JFrame {
                 }
         ) {
             Class[] types = new Class [] {
-                    String.class, String.class, String.class, String.class, String.class, String.class, String.class
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                     false, false, false, false, false, false, false
@@ -137,6 +139,7 @@ public class TransitFrame extends JFrame {
                 return canEdit [columnIndex];
             }
         });
+        districtTable.setGridColor(new java.awt.Color(0, 0, 0));
         districtTable.getTableHeader().setReorderingAllowed(false);
         inforTable1.setViewportView(districtTable);
         if (districtTable.getColumnModel().getColumnCount() > 0) {
@@ -173,66 +176,66 @@ public class TransitFrame extends JFrame {
             }
         });
 
-        GroupLayout layout = new GroupLayout(getContentPane());
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addContainerGap()
-                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(inforTable)
                                                         .addComponent(inforTable1)))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(287, 287, 287)
-                                                .addComponent(districtLabel, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(districtComboBox, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(districtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(districtComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(68, 68, 68)
                                                 .addComponent(showButton)
                                                 .addGap(0, 0, Short.MAX_VALUE)))
                                 .addContainerGap())
-                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(195, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(title, GroupLayout.PREFERRED_SIZE, 621, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(184, 184, 184))
-                                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(titleShipperTable, GroupLayout.PREFERRED_SIZE, 485, GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(titleShipperTable, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(230, 230, 230))))
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(273, 273, 273)
-                                .addComponent(titleDistrictTable, GroupLayout.PREFERRED_SIZE, 435, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(titleDistrictTable, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(140, 140, 140)
+                                .addGap(178, 178, 178)
                                 .addComponent(getPackageButton)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(281, 281, 281)
                                 .addComponent(sendPackageButton)
-                                .addGap(286, 286, 286))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(title, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(districtLabel)
-                                        .addComponent(districtComboBox, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(districtComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(showButton))
                                 .addGap(40, 40, 40)
-                                .addComponent(titleDistrictTable, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inforTable1, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(titleDistrictTable, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inforTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(72, 72, 72)
-                                .addComponent(titleShipperTable, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inforTable, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(titleShipperTable, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inforTable, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(getPackageButton)
                                         .addComponent(sendPackageButton))
                                 .addContainerGap(45, Short.MAX_VALUE))
@@ -241,21 +244,35 @@ public class TransitFrame extends JFrame {
         pack();
     }// </editor-fold>
 
-    private void districtComboBoxActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-
-    }
-
     private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {
         String selectedDistrict = districtComboBox.getSelectedItem().toString();
         // Thực hiện hành động dựa trên quận được chọn
+        Office district = districtMap.get(selectedDistrict);
         titleDistrictTable.setText("CÁC ĐƠN HÀNG HIỆN TẠI TRONG BƯU CỤC QUẬN "+selectedDistrict.toUpperCase());
         titleShipperTable.setText("CÁC ĐƠN HÀNG TRONG GIỎ HÀNG CỦA SHIPPER QUẬN "+selectedDistrict.toUpperCase());
+        showPackageQueue(district.getShipper());
         transitDistrict();
     }
 
     private void getPackageButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        Office district = districtMap.get(districtComboBox.getSelectedItem().toString());
+        showPackageQueue(district.getShipper());
+        // Các công việc xử lý dữ liệu, phân loại, và hiển thị dữ liệu ở đây
+        // Nếu shipper của quận đó đang có đơn hàng trong queue chưa giao hết thì không được lấy thêm gói hàng mới
+        if (!district.getShipper().getQueue().isEmpty()) {
+            showPackageQueue(district.getShipper());
+            showDeliveryDetails();
+            // Hiển thị thông báo shipper không thể lấy thêm hàng
+            JOptionPane.showMessageDialog(rootPane, "Shipper chưa hoàn thành các đơn hàng nên chưa thể nhận đơn mới!");
+            return;
+        } else if (district.getPackageQueue().isEmpty()) {
+            // Không còn đơn hàng nào ở bưu cục thì không thể nhận đơn hàng mới
+            // Hiển thị thông báo shipper không thể lấy thêm hàng
+            JOptionPane.showMessageDialog(rootPane, "Hiện tại chưa có đơn nào cần được giao cả");
+            return;
+        }
+
         JFrame processingFrame = new JFrame();
         processingFrame.setTitle("Shipper đang lấy hàng");
         processingFrame.setBounds(500, 400, 600, 100);
@@ -272,27 +289,12 @@ public class TransitFrame extends JFrame {
         SwingWorker<Void, Void> worker = new SwingWorker<>() {
             @Override
             protected Void doInBackground() throws Exception {
-                Office newDistrict = districtMap.get(districtComboBox.getSelectedItem().toString());
-                showPackageQueue(newDistrict.getShipper());
-                // Các công việc xử lý dữ liệu, phân loại, và hiển thị dữ liệu ở đây
-                // Nếu shipper của quận đó đang có đơn hàng trong queue chưa giao hết thì không được lấy thêm gói hàng mới
-                if (!newDistrict.getShipper().getQueue().isEmpty()) {
-                    showPackageQueue(newDistrict.getShipper());
-                    showDeliveryDetails();
-                    // Hiển thị thông báo shipper không thể lấy thêm hàng
-                    JOptionPane.showMessageDialog(rootPane, "Shipper chưa hoàn thành các đơn hàng nên chưa thể nhận đơn mới!");
-                } else if (newDistrict.getPackageQueue().isEmpty()) {
-                    // Không còn đơn hàng nào ở bưu cục thì không thể nhận đơn hàng mới
-                    // Hiển thị thông báo shipper không thể lấy thêm hàng
-                    JOptionPane.showMessageDialog(rootPane, "Hiện tại chưa có đơn nào cần được giao cả");
-                } else {
-                    // Shipper sẽ lấy hàng ở quận để mang đi ship
-                    // Shipper sẽ được tính toán để đưa ra lộ trình tối ưu nhất
-                    newDistrict.getShipper().getPackages();
-                    showPackageQueue(newDistrict.getShipper());
-                    // Show các đơn hàng còn lại sau khi shipper đã lấy đi mất 1 số
-                    showDeliveryDetails();
-                }
+                // Shipper sẽ lấy hàng ở quận để mang đi ship
+                // Shipper sẽ được tính toán để đưa ra lộ trình tối ưu nhất
+                district.getShipper().getPackages();
+                showPackageQueue(district.getShipper());
+                // Show các đơn hàng còn lại sau khi shipper đã lấy đi mất 1 số
+                showDeliveryDetails();
                 return null;
             }
 
@@ -304,8 +306,9 @@ public class TransitFrame extends JFrame {
             }
         };
         worker.execute(); // Bắt đầu thực hiện công việc trong background thread
-    }
 
+
+    }
 
     private void sendPackageButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -314,7 +317,7 @@ public class TransitFrame extends JFrame {
             JOptionPane.showMessageDialog(rootPane, "Không có đơn hàng nào cần hoàn thành cả, hãy nhận đơn mới nhé!");
         } else {
             // Hiển thị hộp thoại xác nhận
-            int choice = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn hoàn thành đơn hàng "+district.getShipper().getQueue().peek()+"?", "Xác nhận hoàn thành", JOptionPane.YES_NO_OPTION);
+            int choice = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn hoàn thành "+district.getShipper().getQueue().peek()+"?", "Xác nhận hoàn thành", JOptionPane.YES_NO_OPTION);
             if (choice == JOptionPane.YES_OPTION) {
                 // Thực hiện các lệnh sau khi xác nhận
                 district.getShipper().ship();
@@ -326,55 +329,23 @@ public class TransitFrame extends JFrame {
     }
 
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TransitFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TransitFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TransitFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TransitFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TransitFrame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify
-    private JComboBox<String> districtComboBox;
-    private JLabel districtLabel;
-    private JTable districtTable;
-    private JButton getPackageButton;
-    private JScrollPane inforTable;
-    private JScrollPane inforTable1;
-    private JButton sendPackageButton;
-    private JTable shipTable;
-    private JButton showButton;
-    private JLabel title;
-    private JLabel titleDistrictTable;
-    private JLabel titleShipperTable;
+    private javax.swing.JComboBox<String> districtComboBox;
+    private javax.swing.JLabel districtLabel;
+    private javax.swing.JTable districtTable;
+    private javax.swing.JButton getPackageButton;
+    private javax.swing.JScrollPane inforTable;
+    private javax.swing.JScrollPane inforTable1;
+    private javax.swing.JButton sendPackageButton;
+    private javax.swing.JTable shipTable;
+    private javax.swing.JButton showButton;
+    private javax.swing.JLabel title;
+    private javax.swing.JLabel titleDistrictTable;
+    private javax.swing.JLabel titleShipperTable;
     // End of variables declaration
+
 
     public void transitDistrict() {
         // Hiển thị các đơn hàng có trong queue của các quận
@@ -411,15 +382,6 @@ public class TransitFrame extends JFrame {
         }
     }
 
-    public Queue<Packages> copyQueue(Queue<Packages> originalQueue) {
-        // Tạo một bản sao của PriorityQueue của quận đã chọn để duyệt qua
-        Queue<Packages> tempQueue = new LinkedList<>();
-
-        for (Packages pack : originalQueue) {
-            tempQueue.add(pack); // Thêm từng phần tử từ hàng đợi gốc vào hàng đợi mới
-        }
-        return tempQueue;
-    }
     // Show các đơn hàng có trong quận bằng cách lấy từ queue
     public void showDeliveryDetails() {
         // Xóa dữ liệu hiện có trong bảng để hiển thị dữ liệu mới
@@ -455,6 +417,16 @@ public class TransitFrame extends JFrame {
         }
     }
 
+
+    private Queue<Packages> copyQueue(Queue<Packages> originalQueue) {
+        // Tạo một bản sao của PriorityQueue của quận đã chọn để duyệt qua
+        Queue<Packages> tempQueue = new LinkedList<>();
+
+        for (Packages pack : originalQueue) {
+            tempQueue.add(pack); // Thêm từng phần tử từ hàng đợi gốc vào hàng đợi mới
+        }
+        return tempQueue;
+    }
     private void settingTable(){
         // Lấy JTableHeader của bảng
         JTableHeader header = districtTable.getTableHeader();

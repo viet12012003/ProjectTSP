@@ -104,34 +104,4 @@ public class Shipper {
         queue.poll();
     }
 
-    // Show các đơn hàng shipper đang giao
-    public void showPackageQueue(JTable table, DefaultTableModel model) {
-        if (queue.size() == 0){
-            while (model.getRowCount() > 0) {
-                model.removeRow(0);
-            }
-            return;
-        }
-        // Xoá tất cả các hàng trong bảng trước khi in dữ liệu mới
-        while (model.getRowCount() > 0) {
-            model.removeRow(0);
-        }
-        Queue<Packages> tempQueue = copyQueue(queue);
-        // Lấy dữ liệu từ PriorityQueue và hiển thị trên bảng
-        while (!tempQueue.isEmpty()) {
-            Packages pack = tempQueue.poll();
-            model.addRow(new Object[]{pack.getId(), pack.getSender(), pack.getReceiver(), pack.getAddress(), pack.getGoods(), pack.getPhonenumber(), pack.getService()});
-        }
-        table.setModel(model);
-    }
-
-    public Queue<Packages> copyQueue(Queue<Packages> originalQueue) {
-        // Tạo một bản sao của PriorityQueue của quận đã chọn để duyệt qua
-        Queue<Packages> tempQueue = new LinkedList<>();
-
-        for (Packages pack : originalQueue) {
-            tempQueue.add(pack); // Thêm từng phần tử từ hàng đợi gốc vào hàng đợi mới
-        }
-        return tempQueue;
-    }
 }
