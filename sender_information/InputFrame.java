@@ -7,30 +7,28 @@ package sender_information;
 import receive.PackageQueueManager;
 import transitoffice.ProcessFrame;
 
-import java.awt.Font;
+import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import java.awt.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 
 /**
- *
  * @author HAI YEN
  */
 public class InputFrame extends javax.swing.JFrame {
-
     int autoId = 1;
-
     String filename = "data2.csv";
-
-    public void setfileName(){
+    public InputFrame() {
+//        setfileName();
+        initComponents();
+    }
+    public void setfileName() {
         // Lấy ngày và giờ hiện tại
         Date currentDate = new Date();
 
@@ -52,19 +50,6 @@ public class InputFrame extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }
-    /**
-     * Creates new form Application
-     */
-    public InputFrame() {
-//        setfileName();
-        // Đặt kiểu căn giữa cho ô trong JTable
-        initComponents();
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        inforTable.setDefaultRenderer(Object.class, centerRenderer);
-        settingTableHeading();
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -124,29 +109,29 @@ public class InputFrame extends javax.swing.JFrame {
 
         inforTable.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         inforTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
+                new Object[][]{
 
                 },
-                new String [] {
-                        "Mã đơn ", "Người gửi", "Người nhận", "Địa chỉ", "Phường", "Quận", "Tên hàng hoá", "SĐT"
+                new String[]{
+                        "Mã đơn ", "Người gửi", "Người nhận", "Địa chỉ", "Phường", "Quận", "Tên hàng hoá", "SĐT", "Dịch vụ"
                 }
         ) {
-            Class[] types = new Class [] {
-                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                    false, false, false, false, false, false, false, false
+            boolean[] canEdit = new boolean[]{
+                    false, false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
-        inforTable.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        inforTable.setSelectionBackground(new java.awt.Color(48, 125, 153));
         inforTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(inforTable);
         if (inforTable.getColumnModel().getColumnCount() > 0) {
@@ -164,7 +149,7 @@ public class InputFrame extends javax.swing.JFrame {
             }
         });
 
-        districtComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ba Đình", "Đống Đa", "Cầu Giấy", "Thanh Xuân", "Tây Hồ" }));
+        districtComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Ba Đình", "Đống Đa", "Cầu Giấy", "Thanh Xuân", "Tây Hồ"}));
         districtComboBox.setAutoscrolls(true);
         districtComboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -177,9 +162,9 @@ public class InputFrame extends javax.swing.JFrame {
             }
         });
 
-        wardComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None" }));
+        wardComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"None"}));
 
-        serviceComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hoả tốc", "Giao hàng thường" }));
+        serviceComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Hoả tốc", "Giao hàng thường"}));
 
         processButton.setText("Phân loại và sắp xếp");
         processButton.addActionListener(new java.awt.event.ActionListener() {
@@ -257,9 +242,9 @@ public class InputFrame extends javax.swing.JFrame {
                                         .addComponent(receiverLabel)
                                         .addComponent(receiverText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(addressLable)
-                                        .addComponent(addressText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(addressText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(addressLable))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(goodsText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -290,6 +275,7 @@ public class InputFrame extends javax.swing.JFrame {
         );
 
         pack();
+        settingTable();
         setLocationRelativeTo(null);
     }// </editor-fold>
 
@@ -319,7 +305,6 @@ public class InputFrame extends javax.swing.JFrame {
     }
 
     private void processButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // Hành động sau khi ấn nút phân loại và sắp xếp
         this.dispose();
         PackageQueueManager packageQueueManager = new PackageQueueManager(filename);
         new ProcessFrame(packageQueueManager);
@@ -336,16 +321,16 @@ public class InputFrame extends javax.swing.JFrame {
         String phone = phoneNumberText.getText();
         String service = serviceComboBox.getSelectedItem().toString();
 
-        if (sender.length() == 0 || receiver.length() == 0 || receiverAddress.length() == 0 || goodsName.length() == 0 || phone.length() == 0 || wardsAddress.equals("None")){
+        if (sender.length() == 0 || receiver.length() == 0 || receiverAddress.length() == 0 || goodsName.length() == 0 || phone.length() == 0 || wardsAddress.equals("None")) {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng không để trống thông tin!");
             return;
         }
-        if ( !isValidAddress(receiverAddress)){
+        if (!isValidAddress(receiverAddress)) {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng không sử dụng dấu ',' trong mục địa chỉ nhận!");
             addressText.setText("");
             return;
         }
-        if ( !isValidPhoneNumber(phone)){
+        if (!isValidPhoneNumber(phone)) {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đúng định dạng số điện thoại!");
             phoneNumberText.setText("");
             return;
@@ -409,42 +394,41 @@ public class InputFrame extends javax.swing.JFrame {
         }
     }
 
-    private boolean isValidAddress(String text){
+    private boolean isValidAddress(String text) {
         for (int i = 0; i < text.length(); i++) {
-            if ( text.charAt(i) == ','){
-                return false;
-            }
-        }
-        return true;
-    }
-    private boolean isValidPhoneNumber(String text){
-        for (int i = 0; i < text.length(); i++) {
-            if ( text.charAt(i) < '0' || text.charAt(i) > '9'){
+            if (text.charAt(i) == ',') {
                 return false;
             }
         }
         return true;
     }
 
-    private void settingTableHeading(){
+    private boolean isValidPhoneNumber(String text) {
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) < '0' || text.charAt(i) > '9') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void settingTable() {
         // Lấy JTableHeader của bảng
         JTableHeader header = inforTable.getTableHeader();
-
         // Tạo một Font mới
         Font headerFont = new Font("Times New Roman", Font.BOLD, 12); // Thay đổi font tại đây
-
         // Đặt font cho tiêu đề cột
         header.setFont(headerFont);
-
         // Tạo một TableCellRenderer tùy chỉnh để căn giữa tiêu đề cột
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER); // Căn giữa
-
+        inforTable.setDefaultRenderer(Object.class, centerRenderer);
         // Đặt renderer cho tất cả các cột trong JTableHeader
         for (int i = 0; i < inforTable.getColumnCount(); i++) {
             inforTable.getColumnModel().getColumn(i).setHeaderRenderer(centerRenderer);
         }
     }
+
 
     // Variables declaration - do not modify
     private javax.swing.JLabel addressLable;
