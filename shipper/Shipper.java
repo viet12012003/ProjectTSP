@@ -13,9 +13,9 @@ import java.util.Map;
 import java.util.Queue;
 
 public class Shipper {
-    private CalculateDistanceAndTime cal;  // Để không phải khởi tạo nhiều lần, tốn thời gian
-    private Office district;
-    private Queue<Packages> queue;
+    private CalculateDistanceAndTime cal;  // Để tính toán quãng đường thực tế sử dụng API của Google Map
+    private Office district;  // Quận mà shipper đang giao hàng
+    private Queue<Packages> queue;  // Hàng đợi lưu trữ các gói hàng của shipper
 
     // Khoi tao shipper cho tung quan
     public Shipper(Office district) {
