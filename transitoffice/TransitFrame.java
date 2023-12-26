@@ -4,31 +4,24 @@
  */
 package transitoffice;
 
-import districtoffice.*;
+import districtoffice.DistrictOffice;
 import sender_information.Packages;
 import shipper.Shipper;
 
-import java.awt.*;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JProgressBar;
-import javax.swing.SwingConstants;
-import javax.swing.SwingWorker;
+import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import java.awt.*;
+import java.util.Queue;
+import java.util.*;
+
 /**
- *
  * @author HAI YEN
  */
 public class TransitFrame extends javax.swing.JFrame {
 
-    private Map<String, Office> districtMap;  // Quản lý các quận
+    private Map<String, DistrictOffice> districtMap;  // Quản lý các quận
 
     public TransitFrame(PriorityQueue<Packages> packages) {
         districtMap = classifyPackages(packages);  // Các gói hàng lần luợt được lấy ra và phân chia đến các quận
@@ -70,29 +63,29 @@ public class TransitFrame extends javax.swing.JFrame {
         districtLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         districtLabel.setText(" Quận :");
 
-        districtComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ba Đình", "Đống Đa", "Cầu Giấy", "Thanh Xuân", "Tây Hồ" }));
+        districtComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Ba Đình", "Đống Đa", "Cầu Giấy", "Thanh Xuân", "Tây Hồ"}));
 
         shipTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
+                new Object[][]{
 
                 },
-                new String [] {
+                new String[]{
                         "Mã đơn", "Người gửi", "Người nhận", "Địa chỉ nhận", "Tên hàng hoá", "Số điện thoại", "Dịch vụ"
                 }
         ) {
-            Class[] types = new Class [] {
+            Class[] types = new Class[]{
                     java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean[]{
                     false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         shipTable.getTableHeader().setReorderingAllowed(false);
@@ -106,26 +99,26 @@ public class TransitFrame extends javax.swing.JFrame {
 
         districtTable.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         districtTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
+                new Object[][]{
 
                 },
-                new String [] {
+                new String[]{
                         "Mã đơn", "Người gửi", "Người nhận", "Địa chỉ nhận", "Tên hàng hoá", "Số điện thoại", "Dịch vụ"
                 }
         ) {
-            Class[] types = new Class [] {
+            Class[] types = new Class[]{
                     java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean[]{
                     false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         districtTable.setGridColor(new java.awt.Color(0, 0, 0));
@@ -236,14 +229,14 @@ public class TransitFrame extends javax.swing.JFrame {
     private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {
         String selectedDistrict = districtComboBox.getSelectedItem().toString();
         // Thực hiện hành động dựa trên quận được chọn
-        Office district = districtMap.get(selectedDistrict);
-        titleDistrictTable.setText("CÁC ĐƠN HÀNG HIỆN TẠI TRONG BƯU CỤC QUẬN "+selectedDistrict.toUpperCase());
-        titleShipperTable.setText("CÁC ĐƠN HÀNG TRONG GIỎ HÀNG CỦA SHIPPER QUẬN "+selectedDistrict.toUpperCase());
+        DistrictOffice district = districtMap.get(selectedDistrict);
+        titleDistrictTable.setText("CÁC ĐƠN HÀNG HIỆN TẠI TRONG BƯU CỤC QUẬN " + selectedDistrict.toUpperCase());
+        titleShipperTable.setText("CÁC ĐƠN HÀNG TRONG GIỎ HÀNG CỦA SHIPPER QUẬN " + selectedDistrict.toUpperCase());
         showInformation();
     }
 
     private void getPackageButtonActionPerformed(java.awt.event.ActionEvent evt) {    // Hành động sau khi nhấn nút "Lấy hàng từ bưu cục quận"
-        Office district = districtMap.get(districtComboBox.getSelectedItem().toString());
+        DistrictOffice district = districtMap.get(districtComboBox.getSelectedItem().toString());
         showShipperQueue(district.getShipper());
         // Nếu shipper của quận đó đang có đơn hàng trong queue chưa giao hết thì không được lấy thêm gói hàng mới
         if (!district.getShipper().getQueue().isEmpty()) {
@@ -276,6 +269,7 @@ public class TransitFrame extends javax.swing.JFrame {
                 showDistrictQueue();
                 return null;
             }
+
             @Override
             protected void done() {
                 processingFrame.dispose(); // Sau khi công việc đã xong, đóng frame hiển thị thông báo
@@ -285,13 +279,13 @@ public class TransitFrame extends javax.swing.JFrame {
     }
 
     private void sendPackageButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        Office district = districtMap.get(districtComboBox.getSelectedItem().toString());
+        DistrictOffice district = districtMap.get(districtComboBox.getSelectedItem().toString());
         if (district.getShipper().getQueue().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Không có đơn hàng nào cần hoàn thành cả, hãy nhận đơn mới nhé!");
         } else {
             // Hiển thị hộp thoại xác nhận
-            int choice = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn hoàn thành "+
-                    district.getShipper().getQueue().peek()+"?", "Xác nhận hoàn thành", JOptionPane.YES_NO_OPTION);
+            int choice = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn hoàn thành " +
+                    district.getShipper().getQueue().peek() + "?", "Xác nhận hoàn thành", JOptionPane.YES_NO_OPTION);
             if (choice == JOptionPane.YES_OPTION) {
                 // Thực hiện các lệnh sau khi xác nhận
                 district.getShipper().ship();
@@ -304,13 +298,13 @@ public class TransitFrame extends javax.swing.JFrame {
 
 
     // Phân chia các gói hàng vào các quận
-    public Map<String, Office> classifyPackages(PriorityQueue<Packages> packages) {
-        Map<String, Office> districtOfficeMap = new HashMap<>();
-        districtOfficeMap.put("Thanh Xuân", new ThanhXuanOffice());
-        districtOfficeMap.put("Đống Đa", new DongDaOffice());
-        districtOfficeMap.put("Ba Đình", new BaDinhOffice());
-        districtOfficeMap.put("Tây Hồ", new TayHoOffice());
-        districtOfficeMap.put("Cầu Giấy", new CauGiayOffice());
+    public Map<String, DistrictOffice> classifyPackages(PriorityQueue<Packages> packages) {
+        Map<String, DistrictOffice> districtOfficeMap = new HashMap<>();
+        districtOfficeMap.put("Thanh Xuân", new DistrictOffice("Thanh Xuân","51, Đường Vũ Trọng Phụng, Phường Thanh Xuân Trung, Thanh Xuân"));
+        districtOfficeMap.put("Đống Đa", new DistrictOffice("Đống Đa","87, Phố Thái Thịnh, Phường Thịnh Quang, Đống Đa"));
+        districtOfficeMap.put("Ba Đình", new DistrictOffice("Ba Đình","218, Doi Can St, Phường Liễu Giai, Ba Đình"));
+        districtOfficeMap.put("Tây Hồ", new DistrictOffice("Tây Hồ","588, Đường Lạc Long Quân, Phường Nhật Tân, Tây Hồ"));
+        districtOfficeMap.put("Cầu Giấy", new DistrictOffice("Cầu Giấy","165, Đường Cầu Giấy, Quan Hoa, Quận Cầu Giấy"));
         // Phân loại gói hàng theo từng quận
         while (!packages.isEmpty()) {
             Packages temp = packages.poll();
@@ -318,11 +312,12 @@ public class TransitFrame extends javax.swing.JFrame {
         }
         return districtOfficeMap;
     }
-    public void classifyPackageByDistrict(Packages packages, Map<String, Office> districtOfficeMap) {
+
+    public void classifyPackageByDistrict(Packages packages, Map<String, DistrictOffice> districtOfficeMap) {
         String[] districtArray = packages.getAddress().split(",");
         String district = districtArray[districtArray.length - 1].trim();
         if (districtOfficeMap.containsKey(district)) {
-            Office office = districtOfficeMap.get(district);
+            DistrictOffice office = districtOfficeMap.get(district);
             office.deliverToOffice(packages);
         } else {
             System.out.println("ERROR! Unknown district: " + district);
@@ -334,10 +329,11 @@ public class TransitFrame extends javax.swing.JFrame {
         showDistrictQueue();
         showShipperQueue(districtMap.get(districtComboBox.getSelectedItem().toString()).getShipper());
     }
+
     // Show các đơn hàng có trong quận bằng cách lấy từ queue
     public void showDistrictQueue() {
         // Xóa dữ liệu hiện có trong bảng để hiển thị dữ liệu mới
-        Office selectedDistrict = districtMap.get(districtComboBox.getSelectedItem().toString());
+        DistrictOffice selectedDistrict = districtMap.get(districtComboBox.getSelectedItem().toString());
         ((DefaultTableModel) districtTable.getModel()).setRowCount(0);
 
         // Tạo một bản sao của PriorityQueue của quận đã chọn để duyệt qua
@@ -352,7 +348,7 @@ public class TransitFrame extends javax.swing.JFrame {
     }
 
     public void showShipperQueue(Shipper shipper) {
-        if (shipper.getQueue().size() == 0){
+        if (shipper.getQueue().size() == 0) {
             while ((shipTable.getModel()).getRowCount() > 0) {
                 ((DefaultTableModel) shipTable.getModel()).removeRow(0);
             }
@@ -370,6 +366,7 @@ public class TransitFrame extends javax.swing.JFrame {
                     pack.getAddress(), pack.getGoods(), pack.getPhonenumber(), pack.getService()});
         }
     }
+
     private Queue<Packages> copyQueue(Queue<Packages> originalQueue) {
         // Tạo một bản sao của PriorityQueue của quận đã chọn để duyệt qua
         Queue<Packages> tempQueue = new LinkedList<>();
@@ -379,6 +376,7 @@ public class TransitFrame extends javax.swing.JFrame {
         }
         return tempQueue;
     }
+
     private void settingTable() {
         // Tạo renderer và font cho bảng districtTable
         JTableHeader headerDistrict = districtTable.getTableHeader();
@@ -415,7 +413,6 @@ public class TransitFrame extends javax.swing.JFrame {
     private javax.swing.JLabel titleDistrictTable;
     private javax.swing.JLabel titleShipperTable;
     // End of variables declaration
-
 
 
 }

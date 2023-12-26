@@ -2,8 +2,8 @@ package tsp_algorithms;
 
 import java.util.Arrays;
 
-public class Greedy {
-    public static int[] optimalPath(double[][] distanceMatrix) {
+public class BruteForce {
+    public int[] optimalPath(double[][] distanceMatrix) {
         int numCities = distanceMatrix.length;
         int[] cities = generateInitialTour(numCities);
 
@@ -21,7 +21,7 @@ public class Greedy {
         return bestTour;
     }
 
-    private static int[] generateInitialTour(int size) {
+    private int[] generateInitialTour(int size) {
         int[] tour = new int[size + 1];
         for (int i = 0; i < size; i++) {
             tour[i] = i;
@@ -30,7 +30,7 @@ public class Greedy {
         return tour;
     }
 
-    private static double calculateTourCost(int[] tour, double[][] distanceMatrix) {
+    private double calculateTourCost(int[] tour, double[][] distanceMatrix) {
         double cost = 0;
         for (int i = 0; i < tour.length - 1; i++) {
             cost += distanceMatrix[tour[i]][tour[i + 1]];
@@ -40,7 +40,7 @@ public class Greedy {
         return cost;
     }
 
-    private static boolean nextPermutation(int[] array) {
+    private boolean nextPermutation(int[] array) {
         int i = array.length - 2;
         while (i > 1 && array[i - 1] > array[i]) {
             i--;
@@ -69,18 +69,19 @@ public class Greedy {
 
         return true;
     }
-
-    public static void main(String[] args) {
-        double[][] distanceMatrix = {
-                {0, 5, 6, 9, 7},
-                {3, 0, 10, 7, 3},
-                {3, 6, 0, 2, 1},
-                {2, 6, 1, 0, 3},
-                {5, 2, 5, 8, 0}
-        };
-
-        int[] resultTour = optimalPath(distanceMatrix);
-
-        System.out.println("Best Tour: " + Arrays.toString(resultTour));
-    }
+//
+//    public static void main(String[] args) {
+//        double[][] distanceMatrix = {
+//                {0.0, 1500.0, 1100.0, 3000.0, 320.0, 710.0},
+//                {1200.0, 0.0, 1500.0, 3400.0, 1500.0, 2000.0},
+//                {1100.0, 1700.0, 0.0, 2500.0, 1500.0, 1200.0},
+//                {2700.0, 3300.0, 2000.0, 0.0, 2500.0, 2200.0},
+//                {320.0, 1900.0, 1400.0, 2600.0, 0.0, 400.0},
+//                {1800.0, 3000.0, 1800.0, 2900.0, 500.0, 0.0}
+//        };
+//
+//        int[] resultTour = optimalPath(distanceMatrix);
+//
+//        System.out.println("Best Tour: " + Arrays.toString(resultTour));
+//    }
 }

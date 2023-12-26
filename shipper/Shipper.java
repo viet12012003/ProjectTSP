@@ -1,12 +1,10 @@
 package shipper;
 
-import districtoffice.Office;
+import districtoffice.DistrictOffice;
 import map.CalculateDistanceAndTime;
 import sender_information.Packages;
 import tsp.SimulatedAnnealing;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -14,11 +12,11 @@ import java.util.Queue;
 
 public class Shipper {
     private CalculateDistanceAndTime cal;  // Để tính toán quãng đường thực tế sử dụng API của Google Map
-    private Office district;  // Quận mà shipper đang giao hàng
+    private DistrictOffice district;  // Quận mà shipper đang giao hàng
     private Queue<Packages> queue;  // Hàng đợi lưu trữ các gói hàng của shipper
 
     // Khoi tao shipper cho tung quan
-    public Shipper(Office district) {
+    public Shipper(DistrictOffice district) {
         this.district = district;
         cal = new CalculateDistanceAndTime();
         queue = new LinkedList<>();
@@ -63,7 +61,7 @@ public class Shipper {
         // map để lưu các index tương ứng với gói hàng nào (địa chỉ nào)
         Map<Integer, Packages> mapId = new HashMap<>();
         // Địa điểm xuất phát là vị trí bưu cục của các quận
-        Packages districtAddress = new Packages(-1, null,null, district.getOFFICE_ADDRESS(), null,null,null);
+        Packages districtAddress = new Packages(-1, null,null, district.getOfficeAddress(), null,null,null);
         mapId.put(0, districtAddress);
         // Lấy các gói hàng từ queue của ship và thêm vào map
         for (int i = 1; i < numOfPack + 1; i++) {

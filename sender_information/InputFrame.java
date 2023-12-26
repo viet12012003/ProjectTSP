@@ -23,10 +23,10 @@ import java.util.HashMap;
  */
 public class InputFrame extends javax.swing.JFrame {
     int autoId = 1;
-    String filename = "data2.csv";
+    String filename = "data.csv";
 
     public InputFrame() {
-//        setfileName();  // Đặt lại filename mới
+        setfileName();  // Đặt lại filename mới nếu muốn nhập các thông tin khác
         initComponents();  // Xây dựng giao diện và các hoạt động trong giao diện InputFrame
     }
 
